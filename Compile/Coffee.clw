@@ -33,10 +33,20 @@ website                     CSTRING(250)                   !
                          END
                      END                       
 
+Control              FILE,DRIVER('TOPSPEED'),NAME('Control.tps'),PRE(Control),CREATE,BINDABLE,THREAD !                    
+KControlId               KEY(Control:ControlId),NOCASE,PRIMARY !                    
+Record                   RECORD,PRE()
+ControlId                   LONG                           !                    
+ClientName                  STRING(41)                     !                    
+                         END
+                     END                       
+
 !endregion
 
 Access:Suppliers     &FileManager,THREAD                   ! FileManager for Suppliers
 Relate:Suppliers     &RelationManager,THREAD               ! RelationManager for Suppliers
+Access:Control       &FileManager,THREAD                   ! FileManager for Control
+Relate:Control       &RelationManager,THREAD               ! RelationManager for Control
 
 FuzzyMatcher         FuzzyClass                            ! Global fuzzy matcher
 GlobalErrorStatus    ErrorStatusClass,THREAD

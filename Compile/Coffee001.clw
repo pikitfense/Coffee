@@ -9,6 +9,7 @@
                      MAP
                        INCLUDE('COFFEE001.INC'),ONCE        !Local module procedure declarations
                        INCLUDE('COFFEE002.INC'),ONCE        !Req'd for module callout resolution
+                       INCLUDE('COFFEE004.INC'),ONCE        !Req'd for module callout resolution
                      END
 
 
@@ -29,7 +30,7 @@ AppFrame             APPLICATION('Application'),AT(,,505,318),FONT('Microsoft Sa
                        MENUBAR,USE(?Menubar)
                          MENU('&File'),USE(?FileMenu)
                            ITEM('&Print Setup ...'),USE(?PrintSetup),MSG('Setup printer'),STD(STD:PrintSetup)
-                           ITEM,SEPARATOR
+                           ITEM,USE(?SEPARATOR1),SEPARATOR
                            ITEM('E&xit'),USE(?Exit),MSG('Exit this application'),STD(STD:Close)
                          END
                          MENU('&Edit'),USE(?EditMenu)
@@ -45,6 +46,9 @@ AppFrame             APPLICATION('Application'),AT(,,505,318),FONT('Microsoft Sa
                            ITEM('&Cascade'),USE(?Cascade),MSG('Arrange multiple opened windows'),STD(STD:CascadeWindow)
                            ITEM('&Arrange Icons'),USE(?Arrange),MSG('Arrange the icons for minimized windows'),STD(STD:ArrangeIcons)
                          END
+                         MENU('&Utility'),USE(?MENU1)
+                           ITEM('Edit Control File'),USE(?ITEM1)
+                         END
                          MENU('&Help'),USE(?HelpMenu)
                            ITEM('&Contents'),USE(?Helpindex),MSG('View the contents of the help file'),STD(STD:HelpIndex)
                            ITEM('&Search for Help On...'),USE(?HelpSearch),MSG('Search for help on a subject'),STD(STD:HelpSearch)
@@ -52,32 +56,32 @@ AppFrame             APPLICATION('Application'),AT(,,505,318),FONT('Microsoft Sa
   STD(STD:HelpOnHelp)
                          END
                        END
-                       TOOLBAR,AT(0,0,400,16),USE(?Toolbar)
-                         BUTTON,AT(4,2,14,14),USE(?Toolbar:Top,Toolbar:Top),ICON('WAVCRFIRST.ICO'),DISABLE,FLAT,TIP('Go to the ' & |
+                       TOOLBAR,AT(0,0,505,16),USE(?Toolbar)
+                         BUTTON,AT(4,2,14,14),USE(?Toolbar:Top, Toolbar:Top),ICON('WAVCRFIRST.ICO'),DISABLE,FLAT,TIP('Go to the ' & |
   'First Page')
-                         BUTTON,AT(18,2,14,14),USE(?Toolbar:PageUp,Toolbar:PageUp),ICON('WAVCRPRIOR.ICO'),DISABLE,FLAT, |
-  TIP('Go to the Prior Page')
-                         BUTTON,AT(32,2,14,14),USE(?Toolbar:Up,Toolbar:Up),ICON('WAVCRUP.ICO'),DISABLE,FLAT,TIP('Go to the ' & |
+                         BUTTON,AT(18,2,14,14),USE(?Toolbar:PageUp, Toolbar:PageUp),ICON('WAVCRPRIOR.ICO'),DISABLE, |
+  FLAT,TIP('Go to the Prior Page')
+                         BUTTON,AT(32,2,14,14),USE(?Toolbar:Up, Toolbar:Up),ICON('WAVCRUP.ICO'),DISABLE,FLAT,TIP('Go to the ' & |
   'Prior Record')
-                         BUTTON,AT(46,2,14,14),USE(?Toolbar:Locate,Toolbar:Locate),ICON('WAFIND.ICO'),DISABLE,FLAT, |
+                         BUTTON,AT(46,2,14,14),USE(?Toolbar:Locate, Toolbar:Locate),ICON('WAFIND.ICO'),DISABLE,FLAT, |
   TIP('Locate record')
-                         BUTTON,AT(60,2,14,14),USE(?Toolbar:Down,Toolbar:Down),ICON('WAVCRDOWN.ICO'),DISABLE,FLAT,TIP('Go to the ' & |
-  'Next Record')
-                         BUTTON,AT(74,2,14,14),USE(?Toolbar:PageDown,Toolbar:PageDown),ICON('WAVCRNEXT.ICO'),DISABLE, |
+                         BUTTON,AT(60,2,14,14),USE(?Toolbar:Down, Toolbar:Down),ICON('WAVCRDOWN.ICO'),DISABLE,FLAT, |
+  TIP('Go to the Next Record')
+                         BUTTON,AT(74,2,14,14),USE(?Toolbar:PageDown, Toolbar:PageDown),ICON('WAVCRNEXT.ICO'),DISABLE, |
   FLAT,TIP('Go to the Next Page')
-                         BUTTON,AT(88,2,14,14),USE(?Toolbar:Bottom,Toolbar:Bottom),ICON('WAVCRLAST.ICO'),DISABLE,FLAT, |
+                         BUTTON,AT(88,2,14,14),USE(?Toolbar:Bottom, Toolbar:Bottom),ICON('WAVCRLAST.ICO'),DISABLE,FLAT, |
   TIP('Go to the Last Page')
-                         BUTTON,AT(102,2,14,14),USE(?Toolbar:Select,Toolbar:Select),ICON('WAMARK.ICO'),DISABLE,FLAT, |
+                         BUTTON,AT(102,2,14,14),USE(?Toolbar:Select, Toolbar:Select),ICON('WAMARK.ICO'),DISABLE,FLAT, |
   TIP('Select This Record')
-                         BUTTON,AT(116,2,14,14),USE(?Toolbar:Insert,Toolbar:Insert),ICON('WAINSERT.ICO'),DISABLE,FLAT, |
+                         BUTTON,AT(116,2,14,14),USE(?Toolbar:Insert, Toolbar:Insert),ICON('WAINSERT.ICO'),DISABLE,FLAT, |
   TIP('Insert a New Record')
-                         BUTTON,AT(130,2,14,14),USE(?Toolbar:Change,Toolbar:Change),ICON('WACHANGE.ICO'),DISABLE,FLAT, |
+                         BUTTON,AT(130,2,14,14),USE(?Toolbar:Change, Toolbar:Change),ICON('WACHANGE.ICO'),DISABLE,FLAT, |
   TIP('Edit This Record')
-                         BUTTON,AT(144,2,14,14),USE(?Toolbar:Delete,Toolbar:Delete),ICON('WADELETE.ICO'),DISABLE,FLAT, |
+                         BUTTON,AT(144,2,14,14),USE(?Toolbar:Delete, Toolbar:Delete),ICON('WADELETE.ICO'),DISABLE,FLAT, |
   TIP('Delete This Record')
-                         BUTTON,AT(158,2,14,14),USE(?Toolbar:History,Toolbar:History),ICON('WADITTO.ICO'),DISABLE,FLAT, |
-  TIP('Previous value')
-                         BUTTON,AT(172,2,14,14),USE(?Toolbar:Help,Toolbar:Help),ICON('WAVCRHELP.ICO'),DISABLE,FLAT, |
+                         BUTTON,AT(158,2,14,14),USE(?Toolbar:History, Toolbar:History),ICON('WADITTO.ICO'),DISABLE, |
+  FLAT,TIP('Previous value')
+                         BUTTON,AT(172,2,14,14),USE(?Toolbar:Help, Toolbar:Help),ICON('WAVCRHELP.ICO'),DISABLE,FLAT, |
   TIP('Get Help')
                        END
                      END
@@ -109,6 +113,11 @@ Menu::BrowseMenu ROUTINE                                   ! Code for menu items
     START(BrowseSuppliers, 050000)
   END
 Menu::WindowMenu ROUTINE                                   ! Code for menu items on ?WindowMenu
+Menu::MENU1 ROUTINE                                        ! Code for menu items on ?MENU1
+  CASE ACCEPTED()
+  OF ?ITEM1
+    START(ControlEdit, 25000)
+  END
 Menu::HelpMenu ROUTINE                                     ! Code for menu items on ?HelpMenu
 
 ThisWindow.Init PROCEDURE
@@ -198,6 +207,7 @@ Looped BYTE
       DO Menu::EditMenu                                    ! Process menu items on ?EditMenu menu
       DO Menu::BrowseMenu                                  ! Process menu items on ?BrowseMenu menu
       DO Menu::WindowMenu                                  ! Process menu items on ?WindowMenu menu
+      DO Menu::MENU1                                       ! Process menu items on ?MENU1 menu
       DO Menu::HelpMenu                                    ! Process menu items on ?HelpMenu menu
     END
   ReturnValue = PARENT.TakeAccepted()

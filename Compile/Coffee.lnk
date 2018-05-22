@@ -26,9 +26,12 @@ Coffee003.obj
 WAOK.ICO
 WACANCEL.ICO
 Coffee003.RSC
+Coffee004.obj
+Coffee004.RSC
 COFFEE_BC.obj
 Coffee_BC0.obj
 Clamss.lib
+Clatps.lib
 ABWINDOW.obj
 ABRESIZE.obj
 ABFILE.obj
