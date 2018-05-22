@@ -32,7 +32,13 @@ WHEN  ('RelationManager:Control') ('')
 WHEN  ('RelationManager:Suppliers') ('')
 WHEN  ('Translator') ('')
 
-%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 4
+WHEN  ('FileManager:Control') ('Init {19}PROCEDURE(),DERIVED', 'Kill {19}PROCEDURE(),DERIVED', |
+  'UseFile {16}PROCEDURE(BYTE UseType = UseType:Returns),BYTE,PROC,DERIVED')
+WHEN  ('FileManager:Suppliers') ('Init {19}PROCEDURE(),DERIVED', 'Kill {19}PROCEDURE(),DERIVED', |
+  'UseFile {16}PROCEDURE(BYTE UseType = UseType:Returns),BYTE,PROC,DERIVED')
+WHEN  ('RelationManager:Control') ('Init {19}PROCEDURE', 'Kill {19}PROCEDURE(),DERIVED')
+WHEN  ('RelationManager:Suppliers') ('Init {19}PROCEDURE', 'Kill {19}PROCEDURE(),DERIVED')
 
 %ExternalSource DEFAULT  ('Statically Linked Library (LIB)')
 %ProgramAuthor DEFAULT  ('')
