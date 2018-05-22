@@ -11,7 +11,7 @@ FROM ABC Frame
 [OTHERS]
 Suppliers
 [PROMPTS]
-%ButtonAction DEPEND %Control DEFAULT TIMES 26
+%ButtonAction DEPEND %Control DEFAULT TIMES 27
 WHEN  ('') ('No Special Action')
 WHEN  ('?Arrange') ('No Special Action')
 WHEN  ('?BrowseSuppliers') ('Call a Procedure')
@@ -22,6 +22,7 @@ WHEN  ('?Exit') ('No Special Action')
 WHEN  ('?HelpOnHelp') ('No Special Action')
 WHEN  ('?HelpSearch') ('No Special Action')
 WHEN  ('?Helpindex') ('No Special Action')
+WHEN  ('?ITEM1') ('Call a Procedure')
 WHEN  ('?Paste') ('No Special Action')
 WHEN  ('?PrintSetup') ('No Special Action')
 WHEN  ('?Tile') ('No Special Action')
@@ -39,19 +40,23 @@ WHEN  ('?Toolbar:Select') ('No Special Action')
 WHEN  ('?Toolbar:Top') ('No Special Action')
 WHEN  ('?Toolbar:Up') ('No Special Action')
 
-%ButtonRunName DEPEND %Control DEFAULT TIMES 1
+%ButtonRunName DEPEND %Control DEFAULT TIMES 2
 WHEN  ('?BrowseSuppliers') ('')
+WHEN  ('?ITEM1') ('')
 
-%ButtonRunParameters DEPEND %Control DEFAULT TIMES 1
+%ButtonRunParameters DEPEND %Control DEFAULT TIMES 2
 WHEN  ('?BrowseSuppliers') ('')
+WHEN  ('?ITEM1') ('')
 
-%ButtonProcedure DEPEND %Control PROCEDURE TIMES 1
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 2
 WHEN  ('?BrowseSuppliers') (BrowseSuppliers)
+WHEN  ('?ITEM1') (ControlEdit)
 
-%ButtonThread DEPEND %Control LONG TIMES 1
+%ButtonThread DEPEND %Control LONG TIMES 2
 WHEN  ('?BrowseSuppliers') (1)
+WHEN  ('?ITEM1') (1)
 
-%ButtonThreadStack DEPEND %Control DEFAULT TIMES 26
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 27
 WHEN  ('') ('25000')
 WHEN  ('?Arrange') ('25000')
 WHEN  ('?BrowseSuppliers') ('050000')
@@ -62,6 +67,7 @@ WHEN  ('?Exit') ('25000')
 WHEN  ('?HelpOnHelp') ('25000')
 WHEN  ('?HelpSearch') ('25000')
 WHEN  ('?Helpindex') ('25000')
+WHEN  ('?ITEM1') ('25000')
 WHEN  ('?Paste') ('25000')
 WHEN  ('?PrintSetup') ('25000')
 WHEN  ('?Tile') ('25000')
@@ -79,10 +85,11 @@ WHEN  ('?Toolbar:Select') ('25000')
 WHEN  ('?Toolbar:Top') ('25000')
 WHEN  ('?Toolbar:Up') ('25000')
 
-%ButtonParameters DEPEND %Control DEFAULT TIMES 1
+%ButtonParameters DEPEND %Control DEFAULT TIMES 2
 WHEN  ('?BrowseSuppliers') ('')
+WHEN  ('?ITEM1') ('')
 
-%ButtonRequest DEPEND %Control DEFAULT TIMES 26
+%ButtonRequest DEPEND %Control DEFAULT TIMES 27
 WHEN  ('') ('None')
 WHEN  ('?Arrange') ('None')
 WHEN  ('?BrowseSuppliers') ('')
@@ -93,6 +100,7 @@ WHEN  ('?Exit') ('None')
 WHEN  ('?HelpOnHelp') ('None')
 WHEN  ('?HelpSearch') ('None')
 WHEN  ('?Helpindex') ('None')
+WHEN  ('?ITEM1') ('None')
 WHEN  ('?Paste') ('None')
 WHEN  ('?PrintSetup') ('None')
 WHEN  ('?Tile') ('None')
@@ -324,55 +332,68 @@ WHEN  ('WindowToolbar')TIMES 0
 
 %ExtUITabStyleOverrideGlobal DEPEND %Control LONG TIMES 0
 
-%ExtUITabStyle DEPEND %Control DEFAULT TIMES 1
+%ExtUITabStyle DEPEND %Control DEFAULT TIMES 2
 WHEN  ('') ('Default')
+WHEN  ('?ITEM1') ('Default')
 
-%FieldGradientColorType DEPEND %Control DEFAULT TIMES 2
+%FieldGradientColorType DEPEND %Control DEFAULT TIMES 3
 WHEN  ('') ('Off')
+WHEN  ('?ITEM1') ('Off')
 WHEN  ('?Toolbar') ('Off')
 
-%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 2
+%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 3
 WHEN  ('') ('')
+WHEN  ('?ITEM1') ('')
 WHEN  ('?Toolbar') ('')
 
-%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 2
+%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 3
 WHEN  ('') (0)
+WHEN  ('?ITEM1') (0)
 WHEN  ('?Toolbar') (0)
 
-%FieldGradientColorFrom DEPEND %Control LONG TIMES 2
+%FieldGradientColorFrom DEPEND %Control LONG TIMES 3
 WHEN  ('') (-1)
+WHEN  ('?ITEM1') (-1)
 WHEN  ('?Toolbar') (-1)
 
 %FieldGradientColorFromVariable DEPEND %Control DEFAULT TIMES 0
 
-%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 2
+%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 3
 WHEN  ('') (0)
+WHEN  ('?ITEM1') (0)
 WHEN  ('?Toolbar') (0)
 
-%FieldGradientColorTo DEPEND %Control LONG TIMES 2
+%FieldGradientColorTo DEPEND %Control LONG TIMES 3
 WHEN  ('') (-1)
+WHEN  ('?ITEM1') (-1)
 WHEN  ('?Toolbar') (-1)
 
 %FieldGradientColorToVariable DEPEND %Control DEFAULT TIMES 0
 
-%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 2
+%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 3
 WHEN  ('') (0)
+WHEN  ('?ITEM1') (0)
 WHEN  ('?Toolbar') (0)
 
-%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 0
+%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 1
+WHEN  ('?ITEM1') ()
 
-%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 0
+%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 1
+WHEN  ('?ITEM1') (0)
 
-%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 0
+%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?ITEM1') ('')
 
-%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 0
+%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 1
+WHEN  ('?ITEM1') ()
 
 %PreLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
 
 %PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
 
-%PostLookupDuringValidate DEPEND %Control LONG TIMES 1
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 2
 WHEN  ('') (1)
+WHEN  ('?ITEM1') (1)
 
 %LookupAssign DEPEND %Control MULTI LONG TIMES 0
 
@@ -390,15 +411,17 @@ WHEN  ('') (1)
 
 %CheckedControl DEPEND %CheckedHides DEFAULT TIMES 0
 
-%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 1
+%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 2
 WHEN  ('')TIMES 0
+WHEN  ('?ITEM1')TIMES 0
 
 %CheckedEnables DEPEND %Control MULTI LONG TIMES 0
 
 %CheckedControl1 DEPEND %CheckedEnables DEFAULT TIMES 0
 
-%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 1
+%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 2
 WHEN  ('')TIMES 0
+WHEN  ('?ITEM1')TIMES 0
 
 %UncheckedAssigns DEPEND %Control MULTI LONG TIMES 0
 
@@ -410,40 +433,47 @@ WHEN  ('')TIMES 0
 
 %UnCheckedControl DEPEND %UnCheckedHides DEFAULT TIMES 0
 
-%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 1
+%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 2
 WHEN  ('')TIMES 0
+WHEN  ('?ITEM1')TIMES 0
 
 %UnCheckedEnables DEPEND %Control MULTI LONG TIMES 0
 
 %UnCheckedControl1 DEPEND %UnCheckedEnables DEFAULT TIMES 0
 
-%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 1
+%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 2
 WHEN  ('')TIMES 0
+WHEN  ('?ITEM1')TIMES 0
 
 %CheckedDisables DEPEND %Control MULTI LONG TIMES 0
 
 %CheckedDisableControl DEPEND %CheckedDisables DEFAULT TIMES 0
 
-%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 1
+%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 2
 WHEN  ('')TIMES 0
+WHEN  ('?ITEM1')TIMES 0
 
 %UnCheckedDisables DEPEND %Control MULTI LONG TIMES 0
 
 %UnCheckedDisableControl DEPEND %UnCheckedDisables DEFAULT TIMES 0
 
-%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 1
+%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 2
 WHEN  ('')TIMES 0
+WHEN  ('?ITEM1')TIMES 0
 
 %ActiveImageEnable DEPEND %Control LONG TIMES 0
 
-%AIObjectName DEPEND %Control DEFAULT TIMES 1
+%AIObjectName DEPEND %Control DEFAULT TIMES 2
 WHEN  ('') ('AIBtn0')
+WHEN  ('?ITEM1') ('AIBtn17')
 
-%AIEnableMimicControl DEPEND %Control LONG TIMES 1
+%AIEnableMimicControl DEPEND %Control LONG TIMES 2
 WHEN  ('') (1)
+WHEN  ('?ITEM1') (1)
 
-%AIMimicControl DEPEND %Control DEFAULT TIMES 1
+%AIMimicControl DEPEND %Control DEFAULT TIMES 2
 WHEN  ('') ('?Menubar')
+WHEN  ('?ITEM1') ('?Menubar')
 
 %AIImgRound DEPEND %Control LONG TIMES 0
 
@@ -451,29 +481,33 @@ WHEN  ('') ('?Menubar')
 
 %AIOverrideImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 1
+%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 2
 WHEN  ('') (0)
+WHEN  ('?ITEM1') (0)
 
 %AIDisableImg DEPEND %Control DEFAULT TIMES 0
 
 %AIDisableImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIDisableImgIsVariable DEPEND %Control LONG TIMES 1
+%AIDisableImgIsVariable DEPEND %Control LONG TIMES 2
 WHEN  ('') (0)
+WHEN  ('?ITEM1') (0)
 
 %AIHotImg DEPEND %Control DEFAULT TIMES 0
 
 %AIHotImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIHotImgIsVariable DEPEND %Control LONG TIMES 1
+%AIHotImgIsVariable DEPEND %Control LONG TIMES 2
 WHEN  ('') (0)
+WHEN  ('?ITEM1') (0)
 
 %AIPressedImg DEPEND %Control DEFAULT TIMES 0
 
 %AIPressedImgVariable DEPEND %Control DEFAULT TIMES 0
 
-%AIPressedImgIsVariable DEPEND %Control LONG TIMES 1
+%AIPressedImgIsVariable DEPEND %Control LONG TIMES 2
 WHEN  ('') (0)
+WHEN  ('?ITEM1') (0)
 
 [EMBED]
 EMBED %DataSection
@@ -524,68 +558,69 @@ PROCPROP
 [WINDOW]
 AppFrame APPLICATION('Application'),AT(,,505,318),FONT('Microsoft Sans Serif',8,,FONT:regular, |
           CHARSET:DEFAULT),RESIZE,CENTER,ICON('WAFRAME.ICO'),MAX,STATUS(-1,80,120,45),SYSTEM
-          MENUBAR,USE(?Menubar)
-            MENU('&File'),USE(?FileMenu)
-              ITEM('&Print Setup ...'),USE(?PrintSetup),MSG('Setup printer'),STD(STD:PrintSetup)
-              ITEM,SEPARATOR
-              ITEM('E&xit'),USE(?Exit),MSG('Exit this application'),STD(STD:Close)
+          MENUBAR,USE(?Menubar),#ORDINAL(1)
+            MENU('&File'),USE(?FileMenu),#ORDINAL(2)
+              ITEM('&Print Setup ...'),USE(?PrintSetup),MSG('Setup printer'),STD(STD:PrintSetup), |
+                #ORDINAL(3)
+              ITEM,USE(?SEPARATOR1),SEPARATOR,#ORDINAL(4)
+              ITEM('E&xit'),USE(?Exit),MSG('Exit this application'),STD(STD:Close),#ORDINAL(5)
             END
-            MENU('&Edit'),USE(?EditMenu)
-              ITEM('Cu&t'),USE(?Cut),MSG('Cut Selection To Clipboard'),STD(STD:Cut)
-              ITEM('&Copy'),USE(?Copy),MSG('Copy Selection To Clipboard'),STD(STD:Copy)
-              ITEM('&Paste'),USE(?Paste),MSG('Paste From Clipboard'),STD(STD:Paste)
+            MENU('&Edit'),USE(?EditMenu),#ORDINAL(6)
+              ITEM('Cu&t'),USE(?Cut),MSG('Cut Selection To Clipboard'),STD(STD:Cut),#ORDINAL(7)
+              ITEM('&Copy'),USE(?Copy),MSG('Copy Selection To Clipboard'),STD(STD:Copy),#ORDINAL(8)
+              ITEM('&Paste'),USE(?Paste),MSG('Paste From Clipboard'),STD(STD:Paste),#ORDINAL(9)
             END
-            MENU('&Browse'),USE(?BrowseMenu)
-              ITEM('Browse the Suppliers file'),USE(?BrowseSuppliers),MSG('Browse Suppliers')
+            MENU('&Browse'),USE(?BrowseMenu),#ORDINAL(10)
+              ITEM('Browse the Suppliers file'),USE(?BrowseSuppliers),MSG('Browse Suppliers'), |
+                #ORDINAL(11)
             END
-            MENU('&Window'),USE(?WindowMenu),STD(STD:WindowList)
-              ITEM('T&ile'),USE(?Tile),MSG('Arrange multiple opened windows'),STD(STD:TileWindow)
-              ITEM('&Cascade'),USE(?Cascade),MSG('Arrange multiple opened windows'),STD(STD:CascadeWindow)
+            MENU('&Window'),USE(?WindowMenu),STD(STD:WindowList),#ORDINAL(12)
+              ITEM('T&ile'),USE(?Tile),MSG('Arrange multiple opened windows'),STD(STD:TileWindow), |
+                #ORDINAL(13)
+              ITEM('&Cascade'),USE(?Cascade),MSG('Arrange multiple opened windows'),STD(STD:CascadeWindow), |
+                #ORDINAL(14)
               ITEM('&Arrange Icons'),USE(?Arrange),MSG('Arrange the icons for minimized windows'), |
-                STD(STD:ArrangeIcons)
+                STD(STD:ArrangeIcons),#ORDINAL(15)
             END
-            MENU('&Help'),USE(?HelpMenu)
+            MENU('&Utility'),USE(?MENU1),#ORDINAL(16)
+              ITEM('Edit Control File'),USE(?ITEM1),#ORDINAL(17)
+            END
+            MENU('&Help'),USE(?HelpMenu),#ORDINAL(18)
               ITEM('&Contents'),USE(?Helpindex),MSG('View the contents of the help file'), |
-                STD(STD:HelpIndex)
+                STD(STD:HelpIndex),#ORDINAL(19)
               ITEM('&Search for Help On...'),USE(?HelpSearch),MSG('Search for help on a subject'), |
-                STD(STD:HelpSearch)
+                STD(STD:HelpSearch),#ORDINAL(20)
               ITEM('&How to Use Help'),USE(?HelpOnHelp),MSG('Provides general instructi' & |
-                'ons on using help'),STD(STD:HelpOnHelp)
+                'ons on using help'),STD(STD:HelpOnHelp),#ORDINAL(21)
             END
           END
-          TOOLBAR,AT(0,0,400,16),USE(?Toolbar)
-            BUTTON,AT(4,2,14,14),USE(?Toolbar:Top,Toolbar:Top),ICON('WAVCRFIRST.ICO'),DISABLE, |
-              FLAT,TIP('Go to the First Page'),#ORIG(?Toolbar:Top,Toolbar:Top),#SEQ(1)
-            BUTTON,AT(18,2,14,14),USE(?Toolbar:PageUp,Toolbar:PageUp),ICON('WAVCRPRIOR.ICO'), |
-              DISABLE,FLAT,TIP('Go to the Prior Page'),#ORIG(?Toolbar:PageUp,Toolbar:PageUp), |
-              #SEQ(1)
-            BUTTON,AT(32,2,14,14),USE(?Toolbar:Up,Toolbar:Up),ICON('WAVCRUP.ICO'),DISABLE, |
-              FLAT,TIP('Go to the Prior Record'),#ORIG(?Toolbar:Up,Toolbar:Up),#SEQ(1)
-            BUTTON,AT(46,2,14,14),USE(?Toolbar:Locate,Toolbar:Locate),ICON('WAFIND.ICO'),DISABLE, |
-              FLAT,TIP('Locate record'),#ORIG(?Toolbar:Locate,Toolbar:Locate),#SEQ(1)
-            BUTTON,AT(60,2,14,14),USE(?Toolbar:Down,Toolbar:Down),ICON('WAVCRDOWN.ICO'),DISABLE, |
-              FLAT,TIP('Go to the Next Record'),#ORIG(?Toolbar:Down,Toolbar:Down),#SEQ(1)
-            BUTTON,AT(74,2,14,14),USE(?Toolbar:PageDown,Toolbar:PageDown),ICON('WAVCRNEXT.ICO'), |
-              DISABLE,FLAT,TIP('Go to the Next Page'),#ORIG(?Toolbar:PageDown,Toolbar:PageDown), |
-              #SEQ(1)
-            BUTTON,AT(88,2,14,14),USE(?Toolbar:Bottom,Toolbar:Bottom),ICON('WAVCRLAST.ICO'), |
-              DISABLE,FLAT,TIP('Go to the Last Page'),#ORIG(?Toolbar:Bottom,Toolbar:Bottom), |
-              #SEQ(1)
-            BUTTON,AT(102,2,14,14),USE(?Toolbar:Select,Toolbar:Select),ICON('WAMARK.ICO'), |
-              DISABLE,FLAT,TIP('Select This Record'),#ORIG(?Toolbar:Select,Toolbar:Select), |
-              #SEQ(1)
-            BUTTON,AT(116,2,14,14),USE(?Toolbar:Insert,Toolbar:Insert),ICON('WAINSERT.ICO'), |
-              DISABLE,FLAT,TIP('Insert a New Record'),#ORIG(?Toolbar:Insert,Toolbar:Insert), |
-              #SEQ(1)
-            BUTTON,AT(130,2,14,14),USE(?Toolbar:Change,Toolbar:Change),ICON('WACHANGE.ICO'), |
-              DISABLE,FLAT,TIP('Edit This Record'),#ORIG(?Toolbar:Change,Toolbar:Change),#SEQ(1)
-            BUTTON,AT(144,2,14,14),USE(?Toolbar:Delete,Toolbar:Delete),ICON('WADELETE.ICO'), |
-              DISABLE,FLAT,TIP('Delete This Record'),#ORIG(?Toolbar:Delete,Toolbar:Delete), |
-              #SEQ(1)
-            BUTTON,AT(158,2,14,14),USE(?Toolbar:History,Toolbar:History),ICON('WADITTO.ICO'), |
-              DISABLE,FLAT,TIP('Previous value'),#ORIG(?Toolbar:History,Toolbar:History),#SEQ(1)
-            BUTTON,AT(172,2,14,14),USE(?Toolbar:Help,Toolbar:Help),ICON('WAVCRHELP.ICO'),DISABLE, |
-              FLAT,TIP('Get Help'),#ORIG(?Toolbar:Help,Toolbar:Help),#SEQ(1)
+          TOOLBAR,AT(0,0,505,16),USE(?Toolbar),#ORDINAL(22)
+            BUTTON,AT(4,2,14,14),USE(?Toolbar:Top, Toolbar:Top),ICON('WAVCRFIRST.ICO'),DISABLE, |
+              FLAT,TIP('Go to the First Page'),#SEQ(1),#ORDINAL(23)
+            BUTTON,AT(18,2,14,14),USE(?Toolbar:PageUp, Toolbar:PageUp),ICON('WAVCRPRIOR.ICO'), |
+              DISABLE,FLAT,TIP('Go to the Prior Page'),#SEQ(1),#ORDINAL(24)
+            BUTTON,AT(32,2,14,14),USE(?Toolbar:Up, Toolbar:Up),ICON('WAVCRUP.ICO'),DISABLE, |
+              FLAT,TIP('Go to the Prior Record'),#SEQ(1),#ORDINAL(25)
+            BUTTON,AT(46,2,14,14),USE(?Toolbar:Locate, Toolbar:Locate),ICON('WAFIND.ICO'), |
+              DISABLE,FLAT,TIP('Locate record'),#SEQ(1),#ORDINAL(26)
+            BUTTON,AT(60,2,14,14),USE(?Toolbar:Down, Toolbar:Down),ICON('WAVCRDOWN.ICO'),DISABLE, |
+              FLAT,TIP('Go to the Next Record'),#SEQ(1),#ORDINAL(27)
+            BUTTON,AT(74,2,14,14),USE(?Toolbar:PageDown, Toolbar:PageDown),ICON('WAVCRNEXT.ICO'), |
+              DISABLE,FLAT,TIP('Go to the Next Page'),#SEQ(1),#ORDINAL(28)
+            BUTTON,AT(88,2,14,14),USE(?Toolbar:Bottom, Toolbar:Bottom),ICON('WAVCRLAST.ICO'), |
+              DISABLE,FLAT,TIP('Go to the Last Page'),#SEQ(1),#ORDINAL(29)
+            BUTTON,AT(102,2,14,14),USE(?Toolbar:Select, Toolbar:Select),ICON('WAMARK.ICO'), |
+              DISABLE,FLAT,TIP('Select This Record'),#SEQ(1),#ORDINAL(30)
+            BUTTON,AT(116,2,14,14),USE(?Toolbar:Insert, Toolbar:Insert),ICON('WAINSERT.ICO'), |
+              DISABLE,FLAT,TIP('Insert a New Record'),#SEQ(1),#ORDINAL(31)
+            BUTTON,AT(130,2,14,14),USE(?Toolbar:Change, Toolbar:Change),ICON('WACHANGE.ICO'), |
+              DISABLE,FLAT,TIP('Edit This Record'),#SEQ(1),#ORDINAL(32)
+            BUTTON,AT(144,2,14,14),USE(?Toolbar:Delete, Toolbar:Delete),ICON('WADELETE.ICO'), |
+              DISABLE,FLAT,TIP('Delete This Record'),#SEQ(1),#ORDINAL(33)
+            BUTTON,AT(158,2,14,14),USE(?Toolbar:History, Toolbar:History),ICON('WADITTO.ICO'), |
+              DISABLE,FLAT,TIP('Previous value'),#SEQ(1),#ORDINAL(34)
+            BUTTON,AT(172,2,14,14),USE(?Toolbar:Help, Toolbar:Help),ICON('WAVCRHELP.ICO'), |
+              DISABLE,FLAT,TIP('Get Help'),#SEQ(1),#ORDINAL(35)
           END
         END
 

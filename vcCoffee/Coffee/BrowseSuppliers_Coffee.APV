@@ -130,7 +130,8 @@ WHEN  ('WindowToolbar') (0)
 
 %NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
-%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
 
 %NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
@@ -156,7 +157,8 @@ WHEN  ('WindowToolbar') (0)
 
 %ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
-%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
 
 %ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
@@ -528,7 +530,8 @@ WHEN  ('Step0') (0)
 
 %NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
-%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
 
 %NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
@@ -554,7 +557,8 @@ WHEN  ('Step0') (0)
 
 %ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
-%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
 
 %ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
@@ -1128,7 +1132,8 @@ WHEN  ('EIP_Sup:website') (0)
 
 %NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
-%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('EIP_Sup:website')TIMES 0
 
 %NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
@@ -1154,7 +1159,8 @@ WHEN  ('EIP_Sup:website') (0)
 
 %ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
-%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('EIP_Sup:website')TIMES 0
 
 %ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
@@ -1688,7 +1694,8 @@ WHEN  ('Default') (0)
 
 %NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
-%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
 
 %NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
@@ -1714,7 +1721,8 @@ WHEN  ('Default') (0)
 
 %ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
-%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('Default')TIMES 0
 
 %ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 

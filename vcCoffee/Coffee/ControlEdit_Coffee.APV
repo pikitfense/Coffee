@@ -1,28 +1,27 @@
 [MODULE]
-NAME 'UpdateSuppliers_Coffee.clw'
+NAME 'ControlEdit_Coffee.clw'
 [COMMON]
 FROM ABC GENERATED
 [PROCEDURE]
-NAME UpdateSuppliers
+NAME ControlEdit
 [COMMON]
-DESCRIPTION 'Form Suppliers'
+DESCRIPTION 'Form Control'
 FROM ABC Window
 CATEGORY 'Form'
 [DATA]
 CurrentTab               STRING(80)
-!!> GUID('275eb57e-370d-4f1c-934e-34ca9c25ee65')
+!!> GUID('f6278981-62d6-4b05-a288-4df93b02ec44')
 ActionMessage            CSTRING(40)
-!!> GUID('3ec0a9ad-c251-41f3-b8ee-18c35fb98f6d')
+!!> GUID('ba218847-63e1-4e70-abff-7c48cfa34ff8')
 [FILES]
 [PRIMARY]
-Suppliers
+Control
 [INSTANCE]
 2
 [PROMPTS]
-%ButtonAction DEPEND %Control DEFAULT TIMES 4
+%ButtonAction DEPEND %Control DEFAULT TIMES 3
 WHEN  ('') ('No Special Action')
 WHEN  ('?Cancel') ('No Special Action')
-WHEN  ('?Help') ('No Special Action')
 WHEN  ('?OK') ('No Special Action')
 
 %ButtonRunName DEPEND %Control DEFAULT TIMES 0
@@ -33,18 +32,16 @@ WHEN  ('?OK') ('No Special Action')
 
 %ButtonThread DEPEND %Control LONG TIMES 0
 
-%ButtonThreadStack DEPEND %Control DEFAULT TIMES 4
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 3
 WHEN  ('') ('25000')
 WHEN  ('?Cancel') ('25000')
-WHEN  ('?Help') ('25000')
 WHEN  ('?OK') ('25000')
 
 %ButtonParameters DEPEND %Control DEFAULT TIMES 0
 
-%ButtonRequest DEPEND %Control DEFAULT TIMES 4
+%ButtonRequest DEPEND %Control DEFAULT TIMES 3
 WHEN  ('') ('None')
 WHEN  ('?Cancel') ('None')
-WHEN  ('?Help') ('None')
 WHEN  ('?OK') ('None')
 
 %PreLookupKey DEPEND %Control KEY TIMES 0
@@ -103,8 +100,8 @@ WHEN  ('Default') (1)
 WHEN  ('WindowToolbar') (1)
 
 %ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 2
-WHEN  ('Default') ('')
-WHEN  ('WindowToolbar') ('')
+WHEN  ('Default') ('ADOBlob')
+WHEN  ('WindowToolbar') ('ADOBlob')
 
 %ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
 
@@ -124,8 +121,7 @@ WHEN  ('WindowToolbar') (0)
 
 %NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
-%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
-WHEN  ('WindowToolbar')TIMES 0
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
 %NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
@@ -151,8 +147,7 @@ WHEN  ('WindowToolbar')TIMES 0
 
 %ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
-%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
-WHEN  ('WindowToolbar')TIMES 0
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
 %ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
@@ -302,13 +297,10 @@ WHEN  ('') (0)
 
 %PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
 
-%PostLookupDuringValidate DEPEND %Control LONG TIMES 6
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 3
 WHEN  ('') (1)
-WHEN  ('?Sup:ID') (1)
-WHEN  ('?Sup:Name') (1)
-WHEN  ('?Sup:Phone') (1)
-WHEN  ('?Sup:email') (1)
-WHEN  ('?Sup:website') (1)
+WHEN  ('?Control:ClientName') (1)
+WHEN  ('?Control:ControlId') (1)
 
 %LookupAssign DEPEND %Control MULTI LONG TIMES 0
 
@@ -461,122 +453,20 @@ NAME ABC CancelButton
 [INSTANCE]
 INSTANCE 3
 [ADDITION]
-NAME ABC HelpButton
-[INSTANCE]
-INSTANCE 4
-[ADDITION]
-NAME ABC FormVCRControls
-[INSTANCE]
-INSTANCE 5
-PARENT 2
-[PROMPTS]
-%ClassItem UNIQUE DEFAULT  ('Default')
-%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
-WHEN  ('Default') ('ToolbarUpdateClass')
-
-%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 1
-WHEN  ('Default') ('')
-
-%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
-
-%GlobalObject DEPEND %ClassItem DEFAULT TIMES 1
-WHEN  ('Default') ('NO')
-
-%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 1
-WHEN  ('Default') ('ToolbarForm')
-
-%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 1
-WHEN  ('Default') (1)
-
-%UseABCBaseClass DEPEND %ClassItem LONG TIMES 1
-WHEN  ('Default') (1)
-
-%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
-WHEN  ('Default') ('')
-
-%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
-
-%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
-
-%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 1
-WHEN  ('Default') (0)
-
-%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
-
-%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
-
-%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
-
-%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
-
-%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
-
-%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
-WHEN  ('Default')TIMES 0
-
-%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
-
-%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
-
-%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
-
-%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
-
-%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
-
-%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
-
-%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
-
-%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
-
-%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
-
-%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
-
-%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
-
-%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
-
-%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
-WHEN  ('Default')TIMES 0
-
-%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
-
-%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
-
-%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
-
-%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
-
-%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
-
-%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
-
-%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
-
-[ADDITION]
 NAME ABC ViewFormActions
 [INSTANCE]
-INSTANCE 6
+INSTANCE 4
 [PROMPTS]
 %ForceViewOnly LONG  (0)
-%ViewAction DEPEND %Control DEFAULT TIMES 16
+%ViewAction DEPEND %Control DEFAULT TIMES 9
 WHEN  ('') ('None')
 WHEN  ('?Cancel') ('None')
+WHEN  ('?Control:ClientName') ('ReadOnly')
+WHEN  ('?Control:ClientName:Prompt') ('None')
+WHEN  ('?Control:ControlId') ('ReadOnly')
+WHEN  ('?Control:ControlId:Prompt') ('None')
 WHEN  ('?CurrentTab') ('None')
-WHEN  ('?Help') ('None')
 WHEN  ('?OK') ('None')
-WHEN  ('?Sup:ID') ('ReadOnly')
-WHEN  ('?Sup:ID:Prompt') ('None')
-WHEN  ('?Sup:Name') ('ReadOnly')
-WHEN  ('?Sup:Name:Prompt') ('None')
-WHEN  ('?Sup:Phone') ('ReadOnly')
-WHEN  ('?Sup:Phone:Prompt') ('None')
-WHEN  ('?Sup:email') ('ReadOnly')
-WHEN  ('?Sup:email:Prompt') ('None')
-WHEN  ('?Sup:website') ('ReadOnly')
-WHEN  ('?Sup:website:Prompt') ('None')
 WHEN  ('?Tab:1') ('None')
 
 %PropertyAssignments DEPEND %Control MULTI LONG TIMES 0
@@ -605,7 +495,7 @@ NAME ABC WindowResize
 %ResizeAnchorGrowBottom DEPEND %Control LONG TIMES 0
 
 [INSTANCE]
-INSTANCE 7
+INSTANCE 5
 [PROMPTS]
 %UseAppStrategy DEFAULT  ('1')
 %AppStrategy DEFAULT  ('Surface')
@@ -653,7 +543,7 @@ WHEN  ('Default') (1)
 WHEN  ('Default') (1)
 
 %ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 1
-WHEN  ('Default') ('')
+WHEN  ('Default') ('ADOBlob')
 
 %ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
 
@@ -672,8 +562,7 @@ WHEN  ('Default') (0)
 
 %NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
-%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
-WHEN  ('Default')TIMES 0
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
 %NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
 
@@ -699,8 +588,7 @@ WHEN  ('Default')TIMES 0
 
 %ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
-%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
-WHEN  ('Default')TIMES 0
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
 %ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
@@ -717,39 +605,24 @@ WHEN  ('Default')TIMES 0
 %ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
 
 [WINDOW]
-QuickWindow WINDOW('Form Suppliers'),AT(,,358,112),FONT('Microsoft Sans Serif',8,,FONT:regular, |
-          CHARSET:DEFAULT),RESIZE,CENTER,GRAY,IMM,MDI,HLP('UpdateSuppliers'),SYSTEM
-          SHEET,AT(4,4,350,86),USE(?CurrentTab),#ORIG(CurrentTab),#ORDINAL(1)
-            TAB('&1) General'),USE(?Tab:1),#ORDINAL(2)
-              PROMPT('ID:'),AT(8,20),USE(?Sup:ID:Prompt),TRN,#LINK(?Sup:ID),#ORIG(?Sup:ID:Prompt), |
-                #ORDINAL(3)
-              ENTRY(@n-14),AT(61,20,64,10),USE(Sup:ID),#LINK(?Sup:ID:Prompt),#ORIG(Sup:ID), |
-                #ORDINAL(4)
-              PROMPT('Name:'),AT(8,34),USE(?Sup:Name:Prompt),TRN,#LINK(?Sup:Name),#ORIG(?Sup:Name:Prompt), |
-                #ORDINAL(5)
-              ENTRY(@s50),AT(61,34,204,10),USE(Sup:Name),#LINK(?Sup:Name:Prompt),#ORIG(Sup:Name), |
-                #ORDINAL(6)
-              PROMPT('email:'),AT(8,48),USE(?Sup:email:Prompt),TRN,#LINK(?Sup:email),#ORIG(?Sup:email:Prompt), |
-                #ORDINAL(7)
-              ENTRY(@s150),AT(61,48,289,10),USE(Sup:email),#LINK(?Sup:email:Prompt),#ORIG(Sup:email), |
-                #ORDINAL(8)
-              PROMPT('Phone:'),AT(8,62),USE(?Sup:Phone:Prompt),TRN,#LINK(?Sup:Phone),#ORIG(?Sup:Phone:Prompt), |
-                #ORDINAL(9)
-              ENTRY(@P(###) ###-####PB),AT(61,62),USE(Sup:Phone),#LINK(?Sup:Phone:Prompt), |
-                #ORIG(Sup:Phone),#ORDINAL(10)
-              PROMPT('website:'),AT(8,76),USE(?Sup:website:Prompt),TRN,#LINK(?Sup:website), |
-                #ORIG(?Sup:website:Prompt),#ORDINAL(11)
-              ENTRY(@s250),AT(61,76),USE(Sup:website),#LINK(?Sup:website:Prompt),#ORIG(Sup:website), |
-                #ORDINAL(12)
+QuickWindow WINDOW('Form Control'),AT(,,237,70),FONT('Segoe UI',9,COLOR:Black,FONT:regular, |
+          CHARSET:DEFAULT),RESIZE,CENTER,GRAY,IMM,MDI,HLP('ControlEdit'),SYSTEM
+          SHEET,AT(4,4,229,44),USE(?CurrentTab),#ORIG(CurrentTab)
+            TAB('&1) General'),USE(?Tab:1)
+              PROMPT('Control Id:'),AT(8,20),USE(?Control:ControlId:Prompt),TRN,#LINK(?Control:ControlId), |
+                #ORIG(?Control:ControlId:Prompt)
+              ENTRY(@n1),AT(61,20,40,10),USE(Control:ControlId),RIGHT(1),#LINK(?Control:ControlId:Prompt), |
+                #ORIG(Control:ControlId)
+              PROMPT('Client Name:'),AT(8,34),USE(?Control:ClientName:Prompt),TRN,#LINK(?Control:ClientName), |
+                #ORIG(?Control:ClientName:Prompt)
+              ENTRY(@s41),AT(61,34,168,10),USE(Control:ClientName),#LINK(?Control:ClientName:Prompt), |
+                #ORIG(Control:ClientName)
             END
           END
-          BUTTON('&OK'),AT(252,94,49,14),USE(?OK),LEFT,ICON('WAOK.ICO'),DEFAULT,FLAT,MSG('Accept dat' & |
-            'a and close the window'),TIP('Accept data and close the window'),#ORIG(?OK),#SEQ(2), |
-            #ORDINAL(13)
-          BUTTON('&Cancel'),AT(305,94,49,14),USE(?Cancel),LEFT,ICON('WACANCEL.ICO'),FLAT,MSG('Cancel operation'), |
-            TIP('Cancel operation'),#ORIG(?Cancel),#SEQ(3),#ORDINAL(14)
-          BUTTON('&Help'),AT(305,94,49,14),USE(?Help),LEFT,ICON('WAHELP.ICO'),FLAT,HIDE,MSG('See Help Window'), |
-            STD(STD:Help),TIP('See Help Window'),#ORIG(?Help),#SEQ(4),#ORDINAL(15)
+          BUTTON('&OK'),AT(131,52,49,14),USE(?OK),LEFT,ICON('WAOK.ICO'),DEFAULT,FLAT,MSG('Accept dat' & |
+            'a and close the window'),TIP('Accept data and close the window'),#ORIG(?OK),#SEQ(2)
+          BUTTON('&Cancel'),AT(184,52,49,14),USE(?Cancel),LEFT,ICON('WACANCEL.ICO'),FLAT,MSG('Cancel operation'), |
+            TIP('Cancel operation'),#ORIG(?Cancel),#SEQ(3)
         END
 
 [END]

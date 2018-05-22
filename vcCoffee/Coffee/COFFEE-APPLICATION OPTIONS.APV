@@ -7,30 +7,32 @@ PROCEDURE Main
 FROM ABC
 [PROMPTS]
 %GlobalUseABCClasess LONG  (1)
-%ClassItem UNIQUE DEFAULT  ('ErrorManager', 'ErrorStatusManager', 'FileManager:Suppliers', |
-  'FuzzyMatcher', 'INIManager', 'RelationManager:Suppliers', 'Translator')
-%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 7
+%ClassItem UNIQUE DEFAULT  ('ErrorManager', 'ErrorStatusManager', 'FileManager:Control', |
+  'FileManager:Suppliers', 'FuzzyMatcher', 'INIManager', 'RelationManager:Control', |
+  'RelationManager:Suppliers', 'Translator')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 9
 WHEN  ('ErrorManager') ('ErrorClass')
 WHEN  ('ErrorStatusManager') ('ErrorStatusClass')
+WHEN  ('FileManager:Control') ('FileManager')
 WHEN  ('FileManager:Suppliers') ('FileManager')
 WHEN  ('FuzzyMatcher') ('FuzzyClass')
 WHEN  ('INIManager') ('INIClass')
+WHEN  ('RelationManager:Control') ('RelationManager')
 WHEN  ('RelationManager:Suppliers') ('RelationManager')
 WHEN  ('Translator') ('TranslatorClass')
 
-%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 7
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 9
 WHEN  ('ErrorManager') ('')
 WHEN  ('ErrorStatusManager') ('')
+WHEN  ('FileManager:Control') ('')
 WHEN  ('FileManager:Suppliers') ('')
 WHEN  ('FuzzyMatcher') ('')
 WHEN  ('INIManager') ('')
+WHEN  ('RelationManager:Control') ('')
 WHEN  ('RelationManager:Suppliers') ('')
 WHEN  ('Translator') ('')
 
-%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 2
-WHEN  ('FileManager:Suppliers') ('Init {19}PROCEDURE(),DERIVED', 'Kill {19}PROCEDURE(),DERIVED', |
-  'UseFile {16}PROCEDURE(BYTE UseType = UseType:Returns),BYTE,PROC,DERIVED')
-WHEN  ('RelationManager:Suppliers') ('Init {19}PROCEDURE', 'Kill {19}PROCEDURE(),DERIVED')
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
 
 %ExternalSource DEFAULT  ('Statically Linked Library (LIB)')
 %ProgramAuthor DEFAULT  ('')
@@ -176,48 +178,58 @@ WHEN  ('RelationManager:Suppliers') ('Init {19}PROCEDURE', 'Kill {19}PROCEDURE()
 %DefaultExport LONG  (0)
 %TriggersSupportEnableGlobal LONG  (0)
 %TriggersManagerType DEFAULT  ('TriggerManager')
-%GlobalObject DEPEND %ClassItem DEFAULT TIMES 7
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 9
 WHEN  ('ErrorManager') ('YES')
 WHEN  ('ErrorStatusManager') ('YES')
+WHEN  ('FileManager:Control') ('YES')
 WHEN  ('FileManager:Suppliers') ('YES')
 WHEN  ('FuzzyMatcher') ('YES')
 WHEN  ('INIManager') ('YES')
+WHEN  ('RelationManager:Control') ('YES')
 WHEN  ('RelationManager:Suppliers') ('YES')
 WHEN  ('Translator') ('YES')
 
-%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 7
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 9
 WHEN  ('ErrorManager') ('GlobalErrors')
 WHEN  ('ErrorStatusManager') ('GlobalErrorsStatus')
+WHEN  ('FileManager:Control') ('Hide:Access:Control')
 WHEN  ('FileManager:Suppliers') ('Hide:Access:Suppliers')
 WHEN  ('FuzzyMatcher') ('FuzzyMatcher')
 WHEN  ('INIManager') ('INIMgr')
+WHEN  ('RelationManager:Control') ('Hide:Relate:Control')
 WHEN  ('RelationManager:Suppliers') ('Hide:Relate:Suppliers')
 WHEN  ('Translator') ('Translator')
 
-%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 7
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 9
 WHEN  ('ErrorManager') (1)
 WHEN  ('ErrorStatusManager') (1)
+WHEN  ('FileManager:Control') (1)
 WHEN  ('FileManager:Suppliers') (1)
 WHEN  ('FuzzyMatcher') (1)
 WHEN  ('INIManager') (1)
+WHEN  ('RelationManager:Control') (1)
 WHEN  ('RelationManager:Suppliers') (1)
 WHEN  ('Translator') (1)
 
-%UseABCBaseClass DEPEND %ClassItem LONG TIMES 7
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 9
 WHEN  ('ErrorManager') (1)
 WHEN  ('ErrorStatusManager') (1)
+WHEN  ('FileManager:Control') (1)
 WHEN  ('FileManager:Suppliers') (1)
 WHEN  ('FuzzyMatcher') (1)
 WHEN  ('INIManager') (1)
+WHEN  ('RelationManager:Control') (1)
 WHEN  ('RelationManager:Suppliers') (1)
 WHEN  ('Translator') (1)
 
-%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 7
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 9
 WHEN  ('ErrorManager') ('')
 WHEN  ('ErrorStatusManager') ('')
+WHEN  ('FileManager:Control') ('')
 WHEN  ('FileManager:Suppliers') ('')
 WHEN  ('FuzzyMatcher') ('')
 WHEN  ('INIManager') ('')
+WHEN  ('RelationManager:Control') ('')
 WHEN  ('RelationManager:Suppliers') ('')
 WHEN  ('Translator') ('')
 
@@ -225,12 +237,14 @@ WHEN  ('Translator') ('')
 
 %BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
 
-%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 7
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 9
 WHEN  ('ErrorManager') (0)
 WHEN  ('ErrorStatusManager') (0)
+WHEN  ('FileManager:Control') (0)
 WHEN  ('FileManager:Suppliers') (0)
 WHEN  ('FuzzyMatcher') (0)
 WHEN  ('INIManager') (0)
+WHEN  ('RelationManager:Control') (0)
 WHEN  ('RelationManager:Suppliers') (0)
 WHEN  ('Translator') (0)
 
@@ -303,20 +317,24 @@ WHEN  ('FuzzyMatcher')TIMES 0
 
 %OverrideCloseFile DEPEND %File DEFAULT TIMES 0
 
-%OverrideRILogout DEPEND %File DEFAULT TIMES 2
+%OverrideRILogout DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
-%OverrideThreaded DEPEND %File DEFAULT TIMES 2
+%OverrideThreaded DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
-%OverrideCreate DEPEND %File DEFAULT TIMES 2
+%OverrideCreate DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
-%OverrideExternal DEPEND %File DEFAULT TIMES 2
+%OverrideExternal DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
 %OverrideLocalExternal DEPEND %File LONG TIMES 0
@@ -327,16 +345,19 @@ WHEN  ('Suppliers') ('Use Default')
 
 %OverrideExport DEPEND %File LONG TIMES 0
 
-%OverrideOpenMode DEPEND %File DEFAULT TIMES 2
+%OverrideOpenMode DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
-%OverrideUserAccess DEPEND %File DEFAULT TIMES 2
+%OverrideUserAccess DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
-%OverrideOtherAccess DEPEND %File DEFAULT TIMES 2
+%OverrideOtherAccess DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
 %OverrideAbcSettings LONG  (0)
@@ -378,40 +399,47 @@ WHEN  ('Suppliers') ('Use Default')
 %IgnoreCase LONG  (1)
 %WordOnly LONG  (0)
 %DefaultLazyOpen LONG  (1)
-%FileDeclarationMode DEPEND %File DEFAULT TIMES 2
+%FileDeclarationMode DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use User Options')
+WHEN  ('Control') ('Use User Options')
 WHEN  ('Suppliers') ('Use User Options')
 
-%FileDeclarationType DEPEND %File LONG TIMES 2
+%FileDeclarationType DEPEND %File LONG TIMES 3
 WHEN  ('') (0)
+WHEN  ('Control') (0)
 WHEN  ('Suppliers') (0)
 
-%FileDeclarationThread DEPEND %File LONG TIMES 2
+%FileDeclarationThread DEPEND %File LONG TIMES 3
 WHEN  ('') (0)
+WHEN  ('Control') (1)
 WHEN  ('Suppliers') (1)
 
-%FileDeclarationBindable DEPEND %File LONG TIMES 2
+%FileDeclarationBindable DEPEND %File LONG TIMES 3
 WHEN  ('') (1)
+WHEN  ('Control') (1)
 WHEN  ('Suppliers') (1)
 
 %FileDeclarationName DEPEND %File DEFAULT TIMES 0
 
 %FileDeclarationOver DEPEND %File DEFAULT TIMES 0
 
-%OverrideLazyOpen DEPEND %File DEFAULT TIMES 2
+%OverrideLazyOpen DEPEND %File DEFAULT TIMES 3
 WHEN  ('') ('Use Default')
+WHEN  ('Control') ('Use Default')
 WHEN  ('Suppliers') ('Use Default')
 
-%OverrideDoNotAssertOnCloseMisuse DEPEND %File LONG TIMES 2
+%OverrideDoNotAssertOnCloseMisuse DEPEND %File LONG TIMES 3
 WHEN  ('') (0)
+WHEN  ('Control') (0)
 WHEN  ('Suppliers') (0)
 
-%StandardExternalModule DEPEND %Module LONG TIMES 5
+%StandardExternalModule DEPEND %Module LONG TIMES 6
 WHEN  ('') (1)
 WHEN  ('Coffee.clw') (1)
 WHEN  ('Coffee001.clw') (1)
 WHEN  ('Coffee002.clw') (1)
 WHEN  ('Coffee003.clw') (1)
+WHEN  ('Coffee004.clw') (1)
 
 %NoGenerateGlobals LONG  (0)
 %WindowManagerType DEFAULT  ('WindowManager')
@@ -485,11 +513,12 @@ WHEN  ('Coffee003.clw') (1)
 %ABCVersion DEFAULT  ('10000')
 [PERSIST]
 %SaveCreateLocalMap DEFAULT  ('1')
-%GenerationCompleted DEPEND %Module DEFAULT TIMES 4
+%GenerationCompleted DEPEND %Module DEFAULT TIMES 5
 WHEN  ('Coffee.clw') ('1')
 WHEN  ('Coffee001.clw') ('1')
 WHEN  ('Coffee002.clw') ('1')
 WHEN  ('Coffee003.clw') ('1')
+WHEN  ('Coffee004.clw') ('1')
 
 %LastTarget32 DEFAULT  ('1')
 %LastProgramExtension DEFAULT  ('EXE')
@@ -498,13 +527,16 @@ WHEN  ('Coffee003.clw') ('1')
 [PROJECT]
 #system win32 exe
 #model clarion dll
+#pragma debug(vid=>off)
 #pragma define(_ABCDllMode_=>0) -- GENERATED
 #pragma define(_ABCLinkMode_=>1) -- GENERATED
 #compile "Coffee.clw" -- GENERATED
 #compile "Coffee001.clw" -- GENERATED
 #compile "Coffee002.clw" -- GENERATED
 #compile "Coffee003.clw" -- GENERATED
+#compile "Coffee004.clw" -- GENERATED
 #compile "Coffee_BC0.CLW" -- GENERATED
 #compile "COFFEE_BC.CLW" -- GENERATED
+#pragma link("C%V%tps%X%%L%.lib") -- GENERATED
 #pragma link("C%V%mss%X%%L%.lib") -- GENERATED
 #link "Coffee.EXE"
