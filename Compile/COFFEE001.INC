@@ -1,0 +1,2 @@
+  MODULE('COFFEE001.CLW')
+  END

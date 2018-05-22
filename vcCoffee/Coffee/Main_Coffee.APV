@@ -1,0 +1,592 @@
+[MODULE]
+NAME 'Main_Coffee.clw'
+[COMMON]
+FROM ABC GENERATED
+[PROCEDURE]
+NAME Main
+[COMMON]
+DESCRIPTION 'Wizard Application for C:\share\Source10\Coffee\Coffee.dct'
+FROM ABC Frame
+[FILES]
+[OTHERS]
+Suppliers
+[PROMPTS]
+%ButtonAction DEPEND %Control DEFAULT TIMES 26
+WHEN  ('') ('No Special Action')
+WHEN  ('?Arrange') ('No Special Action')
+WHEN  ('?BrowseSuppliers') ('Call a Procedure')
+WHEN  ('?Cascade') ('No Special Action')
+WHEN  ('?Copy') ('No Special Action')
+WHEN  ('?Cut') ('No Special Action')
+WHEN  ('?Exit') ('No Special Action')
+WHEN  ('?HelpOnHelp') ('No Special Action')
+WHEN  ('?HelpSearch') ('No Special Action')
+WHEN  ('?Helpindex') ('No Special Action')
+WHEN  ('?Paste') ('No Special Action')
+WHEN  ('?PrintSetup') ('No Special Action')
+WHEN  ('?Tile') ('No Special Action')
+WHEN  ('?Toolbar:Bottom') ('No Special Action')
+WHEN  ('?Toolbar:Change') ('No Special Action')
+WHEN  ('?Toolbar:Delete') ('No Special Action')
+WHEN  ('?Toolbar:Down') ('No Special Action')
+WHEN  ('?Toolbar:Help') ('No Special Action')
+WHEN  ('?Toolbar:History') ('No Special Action')
+WHEN  ('?Toolbar:Insert') ('No Special Action')
+WHEN  ('?Toolbar:Locate') ('No Special Action')
+WHEN  ('?Toolbar:PageDown') ('No Special Action')
+WHEN  ('?Toolbar:PageUp') ('No Special Action')
+WHEN  ('?Toolbar:Select') ('No Special Action')
+WHEN  ('?Toolbar:Top') ('No Special Action')
+WHEN  ('?Toolbar:Up') ('No Special Action')
+
+%ButtonRunName DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?BrowseSuppliers') ('')
+
+%ButtonRunParameters DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?BrowseSuppliers') ('')
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 1
+WHEN  ('?BrowseSuppliers') (BrowseSuppliers)
+
+%ButtonThread DEPEND %Control LONG TIMES 1
+WHEN  ('?BrowseSuppliers') (1)
+
+%ButtonThreadStack DEPEND %Control DEFAULT TIMES 26
+WHEN  ('') ('25000')
+WHEN  ('?Arrange') ('25000')
+WHEN  ('?BrowseSuppliers') ('050000')
+WHEN  ('?Cascade') ('25000')
+WHEN  ('?Copy') ('25000')
+WHEN  ('?Cut') ('25000')
+WHEN  ('?Exit') ('25000')
+WHEN  ('?HelpOnHelp') ('25000')
+WHEN  ('?HelpSearch') ('25000')
+WHEN  ('?Helpindex') ('25000')
+WHEN  ('?Paste') ('25000')
+WHEN  ('?PrintSetup') ('25000')
+WHEN  ('?Tile') ('25000')
+WHEN  ('?Toolbar:Bottom') ('25000')
+WHEN  ('?Toolbar:Change') ('25000')
+WHEN  ('?Toolbar:Delete') ('25000')
+WHEN  ('?Toolbar:Down') ('25000')
+WHEN  ('?Toolbar:Help') ('25000')
+WHEN  ('?Toolbar:History') ('25000')
+WHEN  ('?Toolbar:Insert') ('25000')
+WHEN  ('?Toolbar:Locate') ('25000')
+WHEN  ('?Toolbar:PageDown') ('25000')
+WHEN  ('?Toolbar:PageUp') ('25000')
+WHEN  ('?Toolbar:Select') ('25000')
+WHEN  ('?Toolbar:Top') ('25000')
+WHEN  ('?Toolbar:Up') ('25000')
+
+%ButtonParameters DEPEND %Control DEFAULT TIMES 1
+WHEN  ('?BrowseSuppliers') ('')
+
+%ButtonRequest DEPEND %Control DEFAULT TIMES 26
+WHEN  ('') ('None')
+WHEN  ('?Arrange') ('None')
+WHEN  ('?BrowseSuppliers') ('')
+WHEN  ('?Cascade') ('None')
+WHEN  ('?Copy') ('None')
+WHEN  ('?Cut') ('None')
+WHEN  ('?Exit') ('None')
+WHEN  ('?HelpOnHelp') ('None')
+WHEN  ('?HelpSearch') ('None')
+WHEN  ('?Helpindex') ('None')
+WHEN  ('?Paste') ('None')
+WHEN  ('?PrintSetup') ('None')
+WHEN  ('?Tile') ('None')
+WHEN  ('?Toolbar:Bottom') ('None')
+WHEN  ('?Toolbar:Change') ('None')
+WHEN  ('?Toolbar:Delete') ('None')
+WHEN  ('?Toolbar:Down') ('None')
+WHEN  ('?Toolbar:Help') ('None')
+WHEN  ('?Toolbar:History') ('None')
+WHEN  ('?Toolbar:Insert') ('None')
+WHEN  ('?Toolbar:Locate') ('None')
+WHEN  ('?Toolbar:PageDown') ('None')
+WHEN  ('?Toolbar:PageUp') ('None')
+WHEN  ('?Toolbar:Select') ('None')
+WHEN  ('?Toolbar:Top') ('None')
+WHEN  ('?Toolbar:Up') ('None')
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+
+%ClassItem UNIQUE DEFAULT  ('Default', 'WindowToolbar')
+%DefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('WindowManager')
+WHEN  ('WindowToolbar') ('ToolbarClass')
+
+%ActualDefaultBaseClassType DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 1
+WHEN  ('Default') ('Init {19}PROCEDURE(),BYTE,PROC,DERIVED', 'Kill {19}PROCEDURE(),BYTE,PROC,DERIVED', |
+  'TakeAccepted {11}PROCEDURE(),BYTE,PROC,DERIVED')
+
+%ReturnValue FIELD  ()
+%ProcedureOneInstance LONG  (0)
+%WindowOperationMode DEFAULT  ('Use WINDOW setting')
+%INISaveWindow LONG  (1)
+%ProcedureDisableEnhanceFocus LONG  (0)
+%ProcedureUseEnterInsteadTabOverride LONG  (0)
+%WindowUseEnterInsteadTab LONG  (1)
+%ProcedureUseEnterInsteadTabExcludeListCombo LONG  (0)
+%ProcedureUseEnterInsteadTabEnableNextTabStop LONG  (0)
+%ProcedureUseEnterInsteadTabExcludeG LONG  (1)
+%WindowUseEnterInsteadTabExclude MULTI DEFAULT  ()
+%GlobalObject DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('NO')
+WHEN  ('WindowToolbar') ('NO')
+
+%ThisObjectName DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('ThisWindow')
+WHEN  ('WindowToolbar') ('Toolbar')
+
+%UseDefaultABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%UseABCBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (1)
+WHEN  ('WindowToolbar') (1)
+
+%ABCBaseClass DEPEND %ClassItem DEFAULT TIMES 2
+WHEN  ('Default') ('')
+WHEN  ('WindowToolbar') ('')
+
+%ExtBaseClass DEPEND %ClassItem DEFAULT TIMES 0
+
+%BaseClassIncludeFile DEPEND %ClassItem DEFAULT TIMES 0
+
+%DeriveFromBaseClass DEPEND %ClassItem LONG TIMES 2
+WHEN  ('Default') (0)
+WHEN  ('WindowToolbar') (0)
+
+%NewMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewMethodName DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewMethodPrototype DEPEND %NewMethods DEFAULT TIMES 0
+
+%NewClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%NewClassProperty DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataType DEPEND %NewClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%NewClassOtherType DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataIsRef DEPEND %NewClassPropertyItems LONG TIMES 0
+
+%NewClassDataSize DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim1 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim2 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim3 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%NewClassDataDim4 DEPEND %NewClassPropertyItems DEFAULT TIMES 0
+
+%ClassMethods DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassMethodName DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassMethodPrototype DEPEND %ClassMethods DEFAULT TIMES 0
+
+%ClassPropertyItems DEPEND %ClassItem MULTI LONG TIMES 0
+
+%ClassProperty DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataType DEPEND %ClassPropertyItems DEFAULT TIMES 1
+WHEN  ('WindowToolbar')TIMES 0
+
+%ClassOtherType DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataIsRef DEPEND %ClassPropertyItems LONG TIMES 0
+
+%ClassDataSize DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim1 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim2 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim3 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%ClassDataDim4 DEPEND %ClassPropertyItems DEFAULT TIMES 0
+
+%WindowStyles MULTI LONG  ()
+%WindowStyleFontName DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontNameIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontSize DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontSizeIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontStyle DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontStyleIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleFontColor DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleFontCharSet DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormal DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundNormalVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundNormalIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleForegroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleForegroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelected DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleBackgroundSelectedVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStyleBackgroundSelectedIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStylePicture DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureVariable DEPEND %WindowStyles DEFAULT TIMES 0
+
+%WindowStylePictureIsVariable DEPEND %WindowStyles LONG TIMES 0
+
+%WindowStyleOtherListboxes MULTI DEFAULT  ()
+%ProcedureAutoBindFields MULTI LONG  ()
+%ProcedureAutoBindField DEPEND %ProcedureAutoBindFields DEFAULT TIMES 0
+
+%ProcedureAutoBindFieldTPL DEPEND %ProcedureAutoBindFields DEFAULT TIMES 0
+
+%ProcedureAutoBindProcedures MULTI LONG  ()
+%ProcedureAutoBindProcedure DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindProcedureTPL DEPEND %ProcedureAutoBindProcedures DEFAULT TIMES 0
+
+%ProcedureAutoBindFieldsIgnored MULTI LONG  ()
+%ProcedureAutoBindFieldIgnored DEPEND %ProcedureAutoBindFieldsIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindProceduresIgnored MULTI LONG  ()
+%ProcedureAutoBindProcedureIgnored DEPEND %ProcedureAutoBindProceduresIgnored DEFAULT TIMES 0
+
+%ProcedureAutoBindValidToAddField LONG  (0)
+%ProcedureUserBindFields MULTI LONG  ()
+%ProcedureUserBindField DEPEND %ProcedureUserBindFields FIELD TIMES 0
+
+%ProcedureAutoBindFieldIgnore DEPEND %ProcedureAutoBindFields LONG TIMES 0
+
+%ProcedureUserBindProcedures MULTI LONG  ()
+%ProcedureUserBindProcedure DEPEND %ProcedureUserBindProcedures PROCEDURE TIMES 0
+
+%ProcedureAutoBindProcedureIgnore DEPEND %ProcedureAutoBindProcedures LONG TIMES 0
+
+%ProcedureUserBindExpressions MULTI LONG  ()
+%ProcedureUserBindExpressionName DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%ProcedureUserBindExpression DEPEND %ProcedureUserBindExpressions DEFAULT TIMES 0
+
+%PreserveVarsLoc MULTI LONG  ()
+%PreserveVarLoc DEPEND %PreserveVarsLoc DEFAULT TIMES 0
+
+%SplashProcedure PROCEDURE  ()
+%ExtUITabIcon DEPEND %Control DEFAULT TIMES 0
+
+%ExtUITabStyleOverrideGlobal DEPEND %Control LONG TIMES 0
+
+%ExtUITabStyle DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('Default')
+
+%FieldGradientColorType DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('Off')
+WHEN  ('?Toolbar') ('Off')
+
+%FieldGradientColorTypeVariable DEPEND %Control DEFAULT TIMES 2
+WHEN  ('') ('')
+WHEN  ('?Toolbar') ('')
+
+%FieldGradientColorTypeIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?Toolbar') (0)
+
+%FieldGradientColorFrom DEPEND %Control LONG TIMES 2
+WHEN  ('') (-1)
+WHEN  ('?Toolbar') (-1)
+
+%FieldGradientColorFromVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorFromIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?Toolbar') (0)
+
+%FieldGradientColorTo DEPEND %Control LONG TIMES 2
+WHEN  ('') (-1)
+WHEN  ('?Toolbar') (-1)
+
+%FieldGradientColorToVariable DEPEND %Control DEFAULT TIMES 0
+
+%FieldGradientColorToIsVariable DEPEND %Control LONG TIMES 2
+WHEN  ('') (0)
+WHEN  ('?Toolbar') (0)
+
+%ButtonReturnValueAssignment DEPEND %Control FIELD TIMES 0
+
+%ButtonReturnValueReferenceAssign DEPEND %Control LONG TIMES 0
+
+%ButtonThreadParameters DEPEND %Control DEFAULT TIMES 0
+
+%ButtonThreadReturnValueAssignment DEPEND %Control FIELD TIMES 0
+
+%PreLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupProcedureParameters DEPEND %Control DEFAULT TIMES 0
+
+%PostLookupDuringValidate DEPEND %Control LONG TIMES 1
+WHEN  ('') (1)
+
+%LookupAssign DEPEND %Control MULTI LONG TIMES 0
+
+%MoreTarget DEPEND %LookupAssign FIELD TIMES 0
+
+%MoreField DEPEND %LookupAssign DEFAULT TIMES 0
+
+%CheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedAssignVariable DEPEND %CheckedAssigns FIELD TIMES 0
+
+%CheckedAssignValue DEPEND %CheckedAssigns DEFAULT TIMES 0
+
+%CheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl DEPEND %CheckedHides DEFAULT TIMES 0
+
+%CheckedControlAction DEPEND %CheckedHides DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%CheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedControl1 DEPEND %CheckedEnables DEFAULT TIMES 0
+
+%CheckedControl1Action DEPEND %CheckedEnables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%UncheckedAssigns DEPEND %Control MULTI LONG TIMES 0
+
+%UncheckedAssignVariable DEPEND %UncheckedAssigns FIELD TIMES 0
+
+%UncheckedAssignValue DEPEND %UncheckedAssigns DEFAULT TIMES 0
+
+%UnCheckedHides DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl DEPEND %UnCheckedHides DEFAULT TIMES 0
+
+%UnCheckedControlAction DEPEND %UnCheckedHides DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%UnCheckedEnables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedControl1 DEPEND %UnCheckedEnables DEFAULT TIMES 0
+
+%UnCheckedControl1Action DEPEND %UnCheckedEnables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%CheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%CheckedDisableControl DEPEND %CheckedDisables DEFAULT TIMES 0
+
+%CheckedDisableControlAction DEPEND %CheckedDisables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%UnCheckedDisables DEPEND %Control MULTI LONG TIMES 0
+
+%UnCheckedDisableControl DEPEND %UnCheckedDisables DEFAULT TIMES 0
+
+%UnCheckedDisableControlAction DEPEND %UnCheckedDisables DEFAULT TIMES 1
+WHEN  ('')TIMES 0
+
+%ActiveImageEnable DEPEND %Control LONG TIMES 0
+
+%AIObjectName DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('AIBtn0')
+
+%AIEnableMimicControl DEPEND %Control LONG TIMES 1
+WHEN  ('') (1)
+
+%AIMimicControl DEPEND %Control DEFAULT TIMES 1
+WHEN  ('') ('?Menubar')
+
+%AIImgRound DEPEND %Control LONG TIMES 0
+
+%AIOverrideImg DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIOverrideImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%AIDisableImg DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIDisableImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%AIHotImg DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIHotImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+%AIPressedImg DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgVariable DEPEND %Control DEFAULT TIMES 0
+
+%AIPressedImgIsVariable DEPEND %Control LONG TIMES 1
+WHEN  ('') (0)
+
+[EMBED]
+EMBED %DataSection
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 4000
+PROPERTY:END
+SQLOpenWindow        WINDOW('Initializing Database'),AT(,,208,26),FONT('Microsoft Sans Serif',8,,FONT:regular),CENTER,GRAY,DOUBLE
+                       STRING('This process could take several seconds.'),AT(27,12)
+                       IMAGE(Icon:Connect),AT(4,4,23,17)
+                       STRING('Please wait while the program connects to the database.'),AT(27,3)
+                     END
+
+[END]
+EMBED %WindowManagerMethodCodeSection
+[INSTANCES]
+WHEN 'Init'
+[INSTANCES]
+WHEN '(),BYTE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 6400
+PROPERTY:END
+SETCURSOR(Cursor:Wait)
+OPEN(SQLOpenWindow)
+ACCEPT
+  IF EVENT() = Event:OpenWindow
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 7800
+PROPERTY:END
+    POST(EVENT:CloseWindow)
+  END
+END
+CLOSE(SQLOpenWindow)
+SETCURSOR()
+[END]
+[END]
+[END]
+[END]
+[ADDITION]
+NAME ABC FrameBrowseControl
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[WINDOW]
+AppFrame APPLICATION('Application'),AT(,,505,318),FONT('Microsoft Sans Serif',8,,FONT:regular, |
+          CHARSET:DEFAULT),RESIZE,CENTER,ICON('WAFRAME.ICO'),MAX,STATUS(-1,80,120,45),SYSTEM
+          MENUBAR,USE(?Menubar)
+            MENU('&File'),USE(?FileMenu)
+              ITEM('&Print Setup ...'),USE(?PrintSetup),MSG('Setup printer'),STD(STD:PrintSetup)
+              ITEM,SEPARATOR
+              ITEM('E&xit'),USE(?Exit),MSG('Exit this application'),STD(STD:Close)
+            END
+            MENU('&Edit'),USE(?EditMenu)
+              ITEM('Cu&t'),USE(?Cut),MSG('Cut Selection To Clipboard'),STD(STD:Cut)
+              ITEM('&Copy'),USE(?Copy),MSG('Copy Selection To Clipboard'),STD(STD:Copy)
+              ITEM('&Paste'),USE(?Paste),MSG('Paste From Clipboard'),STD(STD:Paste)
+            END
+            MENU('&Browse'),USE(?BrowseMenu)
+              ITEM('Browse the Suppliers file'),USE(?BrowseSuppliers),MSG('Browse Suppliers')
+            END
+            MENU('&Window'),USE(?WindowMenu),STD(STD:WindowList)
+              ITEM('T&ile'),USE(?Tile),MSG('Arrange multiple opened windows'),STD(STD:TileWindow)
+              ITEM('&Cascade'),USE(?Cascade),MSG('Arrange multiple opened windows'),STD(STD:CascadeWindow)
+              ITEM('&Arrange Icons'),USE(?Arrange),MSG('Arrange the icons for minimized windows'), |
+                STD(STD:ArrangeIcons)
+            END
+            MENU('&Help'),USE(?HelpMenu)
+              ITEM('&Contents'),USE(?Helpindex),MSG('View the contents of the help file'), |
+                STD(STD:HelpIndex)
+              ITEM('&Search for Help On...'),USE(?HelpSearch),MSG('Search for help on a subject'), |
+                STD(STD:HelpSearch)
+              ITEM('&How to Use Help'),USE(?HelpOnHelp),MSG('Provides general instructi' & |
+                'ons on using help'),STD(STD:HelpOnHelp)
+            END
+          END
+          TOOLBAR,AT(0,0,400,16),USE(?Toolbar)
+            BUTTON,AT(4,2,14,14),USE(?Toolbar:Top,Toolbar:Top),ICON('WAVCRFIRST.ICO'),DISABLE, |
+              FLAT,TIP('Go to the First Page'),#ORIG(?Toolbar:Top,Toolbar:Top),#SEQ(1)
+            BUTTON,AT(18,2,14,14),USE(?Toolbar:PageUp,Toolbar:PageUp),ICON('WAVCRPRIOR.ICO'), |
+              DISABLE,FLAT,TIP('Go to the Prior Page'),#ORIG(?Toolbar:PageUp,Toolbar:PageUp), |
+              #SEQ(1)
+            BUTTON,AT(32,2,14,14),USE(?Toolbar:Up,Toolbar:Up),ICON('WAVCRUP.ICO'),DISABLE, |
+              FLAT,TIP('Go to the Prior Record'),#ORIG(?Toolbar:Up,Toolbar:Up),#SEQ(1)
+            BUTTON,AT(46,2,14,14),USE(?Toolbar:Locate,Toolbar:Locate),ICON('WAFIND.ICO'),DISABLE, |
+              FLAT,TIP('Locate record'),#ORIG(?Toolbar:Locate,Toolbar:Locate),#SEQ(1)
+            BUTTON,AT(60,2,14,14),USE(?Toolbar:Down,Toolbar:Down),ICON('WAVCRDOWN.ICO'),DISABLE, |
+              FLAT,TIP('Go to the Next Record'),#ORIG(?Toolbar:Down,Toolbar:Down),#SEQ(1)
+            BUTTON,AT(74,2,14,14),USE(?Toolbar:PageDown,Toolbar:PageDown),ICON('WAVCRNEXT.ICO'), |
+              DISABLE,FLAT,TIP('Go to the Next Page'),#ORIG(?Toolbar:PageDown,Toolbar:PageDown), |
+              #SEQ(1)
+            BUTTON,AT(88,2,14,14),USE(?Toolbar:Bottom,Toolbar:Bottom),ICON('WAVCRLAST.ICO'), |
+              DISABLE,FLAT,TIP('Go to the Last Page'),#ORIG(?Toolbar:Bottom,Toolbar:Bottom), |
+              #SEQ(1)
+            BUTTON,AT(102,2,14,14),USE(?Toolbar:Select,Toolbar:Select),ICON('WAMARK.ICO'), |
+              DISABLE,FLAT,TIP('Select This Record'),#ORIG(?Toolbar:Select,Toolbar:Select), |
+              #SEQ(1)
+            BUTTON,AT(116,2,14,14),USE(?Toolbar:Insert,Toolbar:Insert),ICON('WAINSERT.ICO'), |
+              DISABLE,FLAT,TIP('Insert a New Record'),#ORIG(?Toolbar:Insert,Toolbar:Insert), |
+              #SEQ(1)
+            BUTTON,AT(130,2,14,14),USE(?Toolbar:Change,Toolbar:Change),ICON('WACHANGE.ICO'), |
+              DISABLE,FLAT,TIP('Edit This Record'),#ORIG(?Toolbar:Change,Toolbar:Change),#SEQ(1)
+            BUTTON,AT(144,2,14,14),USE(?Toolbar:Delete,Toolbar:Delete),ICON('WADELETE.ICO'), |
+              DISABLE,FLAT,TIP('Delete This Record'),#ORIG(?Toolbar:Delete,Toolbar:Delete), |
+              #SEQ(1)
+            BUTTON,AT(158,2,14,14),USE(?Toolbar:History,Toolbar:History),ICON('WADITTO.ICO'), |
+              DISABLE,FLAT,TIP('Previous value'),#ORIG(?Toolbar:History,Toolbar:History),#SEQ(1)
+            BUTTON,AT(172,2,14,14),USE(?Toolbar:Help,Toolbar:Help),ICON('WAVCRHELP.ICO'),DISABLE, |
+              FLAT,TIP('Get Help'),#ORIG(?Toolbar:Help,Toolbar:Help),#SEQ(1)
+          END
+        END
+
+[END]

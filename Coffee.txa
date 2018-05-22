@@ -1,0 +1,409 @@
+[APPLICATION]
+PROCEDURE Main
+DICTIONARY 'C:\share\Source10\Coffee\Coffee.dct'
+[COMMON]
+FROM ABC
+[PROMPTS]
+%ActiveInvisible  DEFAULT (0)
+%AllowUnFilled    DEFAULT (0)
+%RetainRow        DEFAULT (0)
+%ResetOnGainFocus DEFAULT (0)
+%AutoToolBar      DEFAULT (1)
+%AutoRefresh      DEFAULT (1)
+[PROCEDURE]
+NAME Main
+[COMMON]
+DESCRIPTION 'Wizard Application for C:\share\Source10\Coffee\Coffee.dct'
+FROM ABC Frame
+[DATA]
+[FILES]
+[OTHERS]
+Suppliers
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSuppliers') ('Call a Procedure')
+
+%ButtonRunName DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSuppliers') ('')
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSuppliers') ('')
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 1
+WHEN  ('?BrowseSuppliers') (BrowseSuppliers)
+
+%ButtonThread DEPEND %Control LONG TIMES 1
+WHEN  ('?BrowseSuppliers') (1)
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 1
+WHEN  ('?BrowseSuppliers') (50000)
+
+%ButtonParameters DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSuppliers') ('')
+
+%ButtonRequest DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSuppliers') ('')
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[EMBED]
+EMBED %DataSection
+[DEFINITION]
+[SOURCE]
+SQLOpenWindow        WINDOW('Initializing Database'),AT(,,208,26),FONT('Microsoft Sans Serif',8,,FONT:regular),CENTER,GRAY,DOUBLE
+                       STRING('This process could take several seconds.'),AT(27,12)
+                       IMAGE(Icon:Connect),AT(4,4,23,17)
+                       STRING('Please wait while the program connects to the database.'),AT(27,3)
+                     END
+
+[END]
+[END]
+[EMBED]
+EMBED %WindowManagerMethodCodeSection
+[INSTANCES]
+WHEN 'Init'
+[INSTANCES]
+WHEN '(),BYTE'
+[DEFINITION]
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 6400
+PROPERTY:END
+SETCURSOR(Cursor:Wait)
+OPEN(SQLOpenWindow)
+ACCEPT
+  IF EVENT() = Event:OpenWindow
+[SOURCE]
+PROPERTY:BEGIN
+PRIORITY 7800
+PROPERTY:END
+    POST(EVENT:CloseWindow)
+  END
+END
+CLOSE(SQLOpenWindow)
+SETCURSOR()
+[END]
+[END]
+[END]
+[END]
+[ADDITION]
+NAME ABC FrameBrowseControl
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[WINDOW]
+AppFrame APPLICATION('Application'),AT(,,505,318),STATUS(-1,80,120,45),MAX,RESIZE,ICON('WAFRAME.ICO'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+  MENUBAR,USE(?Menubar)
+       MENU('&File'),USE(?FileMenu)
+       ITEM('&Print Setup ...'),USE(?PrintSetup),MSG('Setup printer'),STD(STD:PrintSetup)
+       ITEM,SEPARATOR
+       ITEM('E&xit'),USE(?Exit),MSG('Exit this application'),STD(STD:Close)
+       END
+       MENU('&Edit'),USE(?EditMenu)
+       ITEM('Cu&t'),USE(?Cut),MSG('Cut Selection To Clipboard'),STD(STD:Cut)
+       ITEM('&Copy'),USE(?Copy),MSG('Copy Selection To Clipboard'),STD(STD:Copy)
+       ITEM('&Paste'),USE(?Paste),MSG('Paste From Clipboard'),STD(STD:Paste)
+       END
+       MENU('&Browse'),USE(?BrowseMenu)
+       ITEM('Browse the Suppliers file'),USE(?BrowseSuppliers),MSG('Browse Suppliers')
+       END
+       MENU('&Window'),USE(?WindowMenu),STD(STD:WindowList)
+       ITEM('T&ile'),USE(?Tile),MSG('Arrange multiple opened windows'),STD(STD:TileWindow)
+       ITEM('&Cascade'),USE(?Cascade),MSG('Arrange multiple opened windows'),STD(STD:CascadeWindow)
+       ITEM('&Arrange Icons'),USE(?Arrange),MSG('Arrange the icons for minimized windows'),STD(STD:ArrangeIcons)
+       END
+       MENU('&Help'),USE(?HelpMenu)
+       ITEM('&Contents'),USE(?Helpindex),MSG('View the contents of the help file'),STD(STD:HelpIndex)
+       ITEM('&Search for Help On...'),USE(?HelpSearch),MSG('Search for help on a subject'),STD(STD:HelpSearch)
+       ITEM('&How to Use Help'),USE(?HelpOnHelp),MSG('Provides general instructions on using help'),STD(STD:HelpOnHelp)
+       END
+  END
+  TOOLBAR,AT(0,0,400,16),USE(?Toolbar)
+    BUTTON,AT(4,2,14,14),TIP('Go to the First Page'),USE(?Toolbar:Top,Toolbar:Top),DISABLE,ICON('WAVCRFIRST.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Top,Toolbar:Top)
+    BUTTON,AT(18,2,14,14),TIP('Go to the Prior Page'),USE(?Toolbar:PageUp,Toolbar:PageUp),DISABLE,ICON('WAVCRPRIOR.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:PageUp,Toolbar:PageUp)
+    BUTTON,AT(32,2,14,14),TIP('Go to the Prior Record'),USE(?Toolbar:Up,Toolbar:Up),DISABLE,ICON('WAVCRUP.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Up,Toolbar:Up)
+    BUTTON,AT(46,2,14,14),TIP('Locate record'),USE(?Toolbar:Locate,Toolbar:Locate),DISABLE,ICON('WAFIND.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Locate,Toolbar:Locate)
+    BUTTON,AT(60,2,14,14),TIP('Go to the Next Record'),USE(?Toolbar:Down,Toolbar:Down),DISABLE,ICON('WAVCRDOWN.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Down,Toolbar:Down)
+    BUTTON,AT(74,2,14,14),TIP('Go to the Next Page'),USE(?Toolbar:PageDown,Toolbar:PageDown),DISABLE,ICON('WAVCRNEXT.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:PageDown,Toolbar:PageDown)
+    BUTTON,AT(88,2,14,14),TIP('Go to the Last Page'),USE(?Toolbar:Bottom,Toolbar:Bottom),DISABLE,ICON('WAVCRLAST.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Bottom,Toolbar:Bottom)
+    BUTTON,AT(102,2,14,14),TIP('Select This Record'),USE(?Toolbar:Select,Toolbar:Select),DISABLE,ICON('WAMARK.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Select,Toolbar:Select)
+    BUTTON,AT(116,2,14,14),TIP('Insert a New Record'),USE(?Toolbar:Insert,Toolbar:Insert),DISABLE,ICON('WAINSERT.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Insert,Toolbar:Insert)
+    BUTTON,AT(130,2,14,14),TIP('Edit This Record'),USE(?Toolbar:Change,Toolbar:Change),DISABLE,ICON('WACHANGE.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Change,Toolbar:Change)
+    BUTTON,AT(144,2,14,14),TIP('Delete This Record'),USE(?Toolbar:Delete,Toolbar:Delete),DISABLE,ICON('WADELETE.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Delete,Toolbar:Delete)
+    BUTTON,AT(158,2,14,14),TIP('Previous value'),USE(?Toolbar:History,Toolbar:History),DISABLE,ICON('WADITTO.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:History,Toolbar:History)
+    BUTTON,AT(172,2,14,14),TIP('Get Help'),USE(?Toolbar:Help,Toolbar:Help),DISABLE,ICON('WAVCRHELP.ICO'),FLAT,#SEQ(1),#ORIG(?Toolbar:Help,Toolbar:Help)
+  END
+ END
+[PROCEDURE]
+NAME BrowseSuppliers
+CATEGORY 'Browse'
+[COMMON]
+DESCRIPTION 'Browse the Suppliers file'
+FROM ABC Window
+[DATA]
+CurrentTab                STRING(80)
+[FILES]
+[PRIMARY]
+Suppliers
+[INSTANCE]
+1
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 0
+
+%ButtonRunName DEPEND %Control STRING TIMES 0
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 0
+
+%ButtonParameters DEPEND %Control STRING TIMES 0
+
+%ButtonRequest DEPEND %Control STRING TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[ADDITION]
+NAME ABC BrowseBox
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[PROMPTS]
+%AcceptToolbarControl LONG (1)
+%EnableQuickScan LONG  (0)
+
+%LocatorType DEFAULT  ('')
+%OverrideDefaultLocator DEFAULT ('')
+%OverrideLocator DEFAULT ('')
+
+%RecordFilter @S255  ('')
+
+%RangeField COMPONENT  ()
+
+%RangeLimitType DEFAULT  ('')
+%RangeLimit FIELD  ()
+%RangeLow FIELD  ()
+%RangeHigh FIELD  ()
+%RangeFile FILE  ()
+%ScrollBehavior DEFAULT  ('Fixed Thumb')
+%SortOrder MULTI LONG  ()
+%SortCondition DEPEND %SortOrder @S255 TIMES 0
+%SortKey DEPEND %SortOrder KEY TIMES 0
+%SortLocatorType DEPEND %SortOrder DEFAULT TIMES 0
+%SortOverrideDefaultLocator DEPEND %SortOrder DEFAULT TIMES 0
+%SortOverrideLocator DEPEND %SortOrder DEFAULT TIMES 0
+%SortRecordFilter DEPEND %SortOrder @S255 TIMES 0
+%SortRangeField DEPEND %SortOrder COMPONENT TIMES 0 !HOLA 0
+%SortRangeLimit DEPEND %SortOrder FIELD TIMES 0
+%SortRangeLow DEPEND %SortOrder FIELD TIMES 0
+%SortRangeHigh DEPEND %SortOrder FIELD TIMES 0
+%SortRangeFile DEPEND %SortOrder FILE TIMES 0
+%SortRangeLimitType DEPEND %SortOrder DEFAULT TIMES 0
+%SortScrollBehavior DEPEND %SortOrder DEFAULT TIMES 0
+%SortScrollKeyDistribution DEPEND %SortOrder STRING TIMES 0
+%SortCustomKeyDistribution DEPEND %SortOrder MULTI LONG TIMES 0
+%SortKeyDistributionValue DEPEND %SortCustomKeyDistribution @S10 TIMES 0
+%SortScrollAlpha DEPEND %SortOrder LONG TIMES 0
+%SortScrollNumeric DEPEND %SortOrder LONG TIMES 0
+%SortScrollAlt DEPEND %SortOrder LONG TIMES 0
+[ADDITION]
+NAME ABC BrowseViewButton
+[INSTANCE]
+INSTANCE 2
+PARENT 1
+[ADDITION]
+NAME ABC BrowseUpdateButtons
+[INSTANCE]
+INSTANCE 3
+PARENT 1
+PROCPROP
+[PROMPTS]
+%UpdateProcedure PROCEDURE  (UpdateSuppliers)
+%EditViaPopup LONG  (1)
+[ADDITION]
+NAME ABC CloseButton
+[INSTANCE]
+INSTANCE 4
+[ADDITION]
+NAME ABC HelpButton
+[INSTANCE]
+INSTANCE 5
+[ADDITION]
+NAME ABC WindowResize
+[INSTANCE]
+INSTANCE 6
+[PROMPTS]
+%UseAppStrategy    DEFAULT (1)
+%AppStrategy       DEFAULT ('Surface')
+%RestrictMinSize   DEFAULT (1)
+%WindowMinWidth    DEFAULT (0)
+%WindowMaxWidth    DEFAULT (0)
+[WINDOW]
+QuickWindow WINDOW('Browse the Suppliers file'),AT(,,324,180),IMM,RESIZE,GRAY,MDI,HLP('BrowseSuppliers'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+    LIST,AT(8,30,308,142),USE(?Browse:1),MSG('Browsing the Suppliers file'),IMM,HVSCROLL,|
+      FORMAT('64R(2)|M~ID~C(0)@n-14@80L(2)|M~Name~L(2)@s50@80L(2)|M~email~L(2)@s150@48L(2)|M~Phone~L(2)@s11@44L(2)|M~website~L(2)@s10@'),|
+      FROM(Queue:Browse:1),#SEQ(1),#ORIG(?List),#FIELDS(Sup:ID,Sup:Name,Sup:email,Sup:Phone,Sup:website)
+    BUTTON('&View'),AT(108,176,49,14),USE(?View:2),ICON('WAVIEW.ICO'),FLAT,MSG('View Record'),TIP('View Record'),LEFT,HIDE,#SEQ(2),#ORIG(?View)
+    BUTTON('&Insert'),AT(161,140,49,14),USE(?Insert:3),ICON('WAINSERT.ICO'),FLAT,MSG('Insert a Record'),TIP('Insert a Record'),LEFT,HIDE,#SEQ(3),#ORIG(?Insert),#LINK(?Change:3)
+    BUTTON('&Change'),AT(214,140,49,14),USE(?Change:3),ICON('WACHANGE.ICO'),FLAT,MSG('Change the Record'),TIP('Change the Record'),LEFT,HIDE,DEFAULT,#SEQ(3),#ORIG(?Change),#LINK(?Delete:3)
+    BUTTON('&Delete'),AT(267,140,49,14),USE(?Delete:3),ICON('WADELETE.ICO'),FLAT,MSG('Delete the Record'),TIP('Delete the Record'),LEFT,HIDE,#SEQ(3),#ORIG(?Delete),#LINK(?Insert:3)
+  SHEET,AT(4,4,316,172),USE(?CurrentTab),#ORIG(CurrentTab)
+    TAB('&1) Record Order'),USE(?Tab:2)
+    END
+  END
+  BUTTON('&Close'),AT(218,162,49,14),USE(?Close),ICON('WACLOSE.ICO'),FLAT,MSG('Close Window'),TIP('Close Window'),LEFT,HIDE,#SEQ(4),#ORIG(?Close)
+  BUTTON('&Help'),AT(271,162,49,14),USE(?Help),ICON('WAHELP.ICO'),FLAT,MSG('See Help Window'),TIP('See Help Window'),LEFT,HIDE,STD(STD:Help),#SEQ(5),#ORIG(?Help)
+ END
+[PROCEDURE]
+NAME UpdateSuppliers
+CATEGORY 'Form'
+[COMMON]
+DESCRIPTION 'Form Suppliers'
+FROM ABC Window
+[DATA]
+CurrentTab                STRING(80)
+[FILES]
+[PRIMARY]
+Suppliers
+[INSTANCE]
+2
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 0
+
+%ButtonRunName DEPEND %Control STRING TIMES 0
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 0
+
+%ButtonParameters DEPEND %Control STRING TIMES 0
+
+%ButtonRequest DEPEND %Control STRING TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[ADDITION]
+NAME ABC RecordValidation
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[PROMPTS]
+%ValidateOnAccept LONG  (1)
+%ValidateOnNonStopSelect LONG  (1)
+%ControlsExcluded MULTI LONG  ()
+%ControlToExclude DEPEND %ControlsExcluded STRING TIMES 0
+[ADDITION]
+NAME ABC SaveButton
+[INSTANCE]
+INSTANCE 2
+PROCPROP
+[PROMPTS]
+%InsertAllowed LONG  (1)
+%InsertMessage @S40  ('Record Will Be Added')
+%ChangeAllowed LONG  (1)
+%ChangeMessage @S40  ('Record Will Be Changed')
+%DeleteAllowed LONG  (1)
+%DeleteMessage @S40  ('Record Will Be Deleted')
+%ViewMessage @S40  ('View Record')
+%MessageHeader LONG  (0)
+%ActionOnDelete STRING  ('Standard Warning')
+%PrimingFields MULTI LONG  ()
+%PrimedField DEPEND %PrimingFields FIELD TIMES 0
+
+%PrimedValue DEPEND %PrimingFields @S255 TIMES 0
+
+%ActionOnCancel STRING  ('Confirm cancel')
+%MessageLocation STRING  ('Title Bar')
+%MessageStatusSection @n1  (0)
+
+%HistoryKey        DEFAULT (CtrlH)
+
+%AppendToTitle LONG  ()
+%AppendToTitleID @S255  ('')
+[ADDITION]
+NAME ABC CancelButton
+[INSTANCE]
+INSTANCE 3
+[ADDITION]
+NAME ABC HelpButton
+[INSTANCE]
+INSTANCE 4
+[ADDITION]
+NAME ABC FormVCRControls
+[INSTANCE]
+INSTANCE 5
+PARENT 2
+[ADDITION]
+NAME ABC ViewFormActions
+[INSTANCE]
+INSTANCE 6
+[ADDITION]
+NAME ABC WindowResize
+[INSTANCE]
+INSTANCE 7
+[PROMPTS]
+%UseAppStrategy    DEFAULT (1)
+%AppStrategy       DEFAULT ('Surface')
+%RestrictMinSize   DEFAULT (1)
+%WindowMinWidth    DEFAULT (0)
+%WindowMaxWidth    DEFAULT (0)
+[WINDOW]
+QuickWindow WINDOW('Form Suppliers'),AT(,,358,112),RESIZE,IMM,GRAY,MDI,HLP('UpdateSuppliers'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+  SHEET,AT(4,4,350,86),USE(?CurrentTab),#ORIG(CurrentTab)
+    TAB('&1) General'),USE(?Tab:1)
+         PROMPT('ID:'),USE(?Sup:ID:Prompt),TRN,AT(8,20),#ORIG(?Sup:ID:Prompt),#LINK(Sup:ID)
+         ENTRY(@n-14),USE(Sup:ID),AT(61,20,64,10),#ORIG(Sup:ID),#LINK(?Sup:ID:Prompt)
+         PROMPT('Name:'),USE(?Sup:Name:Prompt),TRN,AT(8,34),#ORIG(?Sup:Name:Prompt),#LINK(Sup:Name)
+         ENTRY(@s50),USE(Sup:Name),AT(61,34,204,10),#ORIG(Sup:Name),#LINK(?Sup:Name:Prompt)
+         PROMPT('email:'),USE(?Sup:email:Prompt),TRN,AT(8,48),#ORIG(?Sup:email:Prompt),#LINK(Sup:email)
+         ENTRY(@s150),USE(Sup:email),AT(61,48,289,10),#ORIG(Sup:email),#LINK(?Sup:email:Prompt)
+         PROMPT('Phone:'),USE(?Sup:Phone:Prompt),TRN,AT(8,62),#ORIG(?Sup:Phone:Prompt),#LINK(Sup:Phone)
+         ENTRY(@s11),USE(Sup:Phone),AT(61,62,48,10),#ORIG(Sup:Phone),#LINK(?Sup:Phone:Prompt)
+         PROMPT('website:'),USE(?Sup:website:Prompt),TRN,AT(8,76),#ORIG(?Sup:website:Prompt),#LINK(Sup:website)
+         ENTRY(@s10),USE(Sup:website),AT(61,76,44,10),#ORIG(Sup:website),#LINK(?Sup:website:Prompt)
+    END
+  END
+  BUTTON('&OK'),AT(252,94,49,14),USE(?OK),ICON('WAOK.ICO'),FLAT,MSG('Accept data and close the window'),TIP('Accept data and close the window'),LEFT,DEFAULT,#SEQ(2),#ORIG(?OK)
+  BUTTON('&Cancel'),AT(305,94,49,14),USE(?Cancel),ICON('WACANCEL.ICO'),FLAT,MSG('Cancel operation'),TIP('Cancel operation'),LEFT,#SEQ(3),#ORIG(?Cancel)
+  BUTTON('&Help'),AT(305,94,49,14),USE(?Help),ICON('WAHELP.ICO'),FLAT,MSG('See Help Window'),TIP('See Help Window'),LEFT,HIDE,STD(STD:Help),#SEQ(4),#ORIG(?Help)
+ END
