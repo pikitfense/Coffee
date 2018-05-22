@@ -26,7 +26,20 @@
   </PropertyGroup>
   <ItemGroup>
     <FileDriver Include="MSSQL" />
+    <FileDriver Include="TOPSPEED" />
     <Compile Include="Coffee.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Coffee001.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Coffee002.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Coffee003.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Coffee004.clw">
       <Generated>true</Generated>
     </Compile>
     <Compile Include="COFFEE_BC.CLW">
