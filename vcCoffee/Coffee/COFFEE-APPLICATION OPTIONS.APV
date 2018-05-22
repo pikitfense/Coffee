@@ -528,12 +528,16 @@ WHEN  ('Coffee004.clw') ('1')
 
 %LastTarget32 DEFAULT  ('1')
 %LastProgramExtension DEFAULT  ('EXE')
-%LastApplicationDebug DEFAULT  ('')
+%LastApplicationDebug DEFAULT  ('1')
 %LastApplicationLocalLibrary DEFAULT  ('')
 [PROJECT]
 #system win32 exe
 #model clarion dll
+<<<<<<< Updated upstream
 #pragma debug(vid=>off)
+=======
+#pragma debug(vid=>full)
+>>>>>>> Stashed changes
 #pragma define(_ABCDllMode_=>0) -- GENERATED
 #pragma define(_ABCLinkMode_=>1) -- GENERATED
 #compile "Coffee.clw" -- GENERATED
