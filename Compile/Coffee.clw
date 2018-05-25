@@ -15,7 +15,7 @@ DctInit     PROCEDURE                                      ! Initializes the dic
 DctKill     PROCEDURE                                      ! Kills the dictionary definition module
      END
 !--- Application Global and Exported Procedure Definitions --------------------------------------------
-     MODULE('COFFEE001.CLW')
+     MODULE('MAIN_COFFEE.CLW')
 Main                   PROCEDURE   !Wizard Application for C:\share\Source10\Coffee\Coffee.dct
      END
    END

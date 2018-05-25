@@ -27,6 +27,9 @@
   <ItemGroup>
     <FileDriver Include="MSSQL" />
     <FileDriver Include="TOPSPEED" />
+    <Compile Include="BrowseSuppliers_Coffee.clw">
+      <Generated>true</Generated>
+    </Compile>
     <Compile Include="Coffee.clw">
       <Generated>true</Generated>
     </Compile>
@@ -34,6 +37,15 @@
       <Generated>true</Generated>
     </Compile>
     <Compile Include="Coffee_BC0.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="ControlEdit_Coffee.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Main_Coffee.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="UpdateSuppliers_Coffee.clw">
       <Generated>true</Generated>
     </Compile>
   </ItemGroup>
