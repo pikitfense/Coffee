@@ -24,7 +24,7 @@ History::Sup:Record  LIKE(Sup:RECORD),THREAD
 QuickWindow          WINDOW('Form Suppliers'),AT(,,358,112),FONT('Microsoft Sans Serif',8,,FONT:regular,CHARSET:DEFAULT), |
   RESIZE,CENTER,GRAY,IMM,MDI,HLP('UpdateSuppliers'),SYSTEM
                        SHEET,AT(4,4,350,86),USE(?CurrentTab)
-                         TAB('&1) General'),USE(?Tab:1)
+                         TAB('&General'),USE(?Tab:1)
                            PROMPT('ID:'),AT(8,20),USE(?Sup:ID:Prompt),TRN
                            ENTRY(@n-14),AT(61,20,64,10),USE(Sup:ID)
                            PROMPT('Name:'),AT(8,34),USE(?Sup:Name:Prompt),TRN
