@@ -32,13 +32,7 @@ WHEN  ('RelationManager:Control') ('')
 WHEN  ('RelationManager:Suppliers') ('')
 WHEN  ('Translator') ('')
 
-%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 4
-WHEN  ('FileManager:Control') ('Init {19}PROCEDURE(),DERIVED', 'Kill {19}PROCEDURE(),DERIVED', |
-  'UseFile {16}PROCEDURE(BYTE UseType = UseType:Returns),BYTE,PROC,DERIVED')
-WHEN  ('FileManager:Suppliers') ('Init {19}PROCEDURE(),DERIVED', 'Kill {19}PROCEDURE(),DERIVED', |
-  'UseFile {16}PROCEDURE(BYTE UseType = UseType:Returns),BYTE,PROC,DERIVED')
-WHEN  ('RelationManager:Control') ('Init {19}PROCEDURE', 'Kill {19}PROCEDURE(),DERIVED')
-WHEN  ('RelationManager:Suppliers') ('Init {19}PROCEDURE', 'Kill {19}PROCEDURE(),DERIVED')
+%ClassLines DEPEND %ClassItem MULTI DEFAULT TIMES 0
 
 %ExternalSource DEFAULT  ('Statically Linked Library (LIB)')
 %ProgramAuthor DEFAULT  ('')
@@ -441,11 +435,11 @@ WHEN  ('Suppliers') (0)
 
 %StandardExternalModule DEPEND %Module LONG TIMES 6
 WHEN  ('') (1)
+WHEN  ('BrowseSuppliers_Coffee.clw') (1)
 WHEN  ('Coffee.clw') (1)
-WHEN  ('Coffee001.clw') (1)
-WHEN  ('Coffee002.clw') (1)
-WHEN  ('Coffee003.clw') (1)
-WHEN  ('Coffee004.clw') (1)
+WHEN  ('ControlEdit_Coffee.clw') (1)
+WHEN  ('Main_Coffee.clw') (1)
+WHEN  ('UpdateSuppliers_Coffee.clw') (1)
 
 %NoGenerateGlobals LONG  (0)
 %WindowManagerType DEFAULT  ('WindowManager')
@@ -520,31 +514,26 @@ WHEN  ('Coffee004.clw') (1)
 [PERSIST]
 %SaveCreateLocalMap DEFAULT  ('1')
 %GenerationCompleted DEPEND %Module DEFAULT TIMES 5
+WHEN  ('BrowseSuppliers_Coffee.clw') ('1')
 WHEN  ('Coffee.clw') ('1')
-WHEN  ('Coffee001.clw') ('1')
-WHEN  ('Coffee002.clw') ('1')
-WHEN  ('Coffee003.clw') ('1')
-WHEN  ('Coffee004.clw') ('1')
+WHEN  ('ControlEdit_Coffee.clw') ('1')
+WHEN  ('Main_Coffee.clw') ('1')
+WHEN  ('UpdateSuppliers_Coffee.clw') ('1')
 
 %LastTarget32 DEFAULT  ('1')
 %LastProgramExtension DEFAULT  ('EXE')
-%LastApplicationDebug DEFAULT  ('1')
+%LastApplicationDebug DEFAULT  ('')
 %LastApplicationLocalLibrary DEFAULT  ('')
 [PROJECT]
 #system win32 exe
 #model clarion dll
-<<<<<<< Updated upstream
-#pragma debug(vid=>off)
-=======
-#pragma debug(vid=>full)
->>>>>>> Stashed changes
 #pragma define(_ABCDllMode_=>0) -- GENERATED
 #pragma define(_ABCLinkMode_=>1) -- GENERATED
 #compile "Coffee.clw" -- GENERATED
-#compile "Coffee001.clw" -- GENERATED
-#compile "Coffee002.clw" -- GENERATED
-#compile "Coffee003.clw" -- GENERATED
-#compile "Coffee004.clw" -- GENERATED
+#compile "BrowseSuppliers_Coffee.clw" -- GENERATED
+#compile "ControlEdit_Coffee.clw" -- GENERATED
+#compile "Main_Coffee.clw" -- GENERATED
+#compile "UpdateSuppliers_Coffee.clw" -- GENERATED
 #compile "Coffee_BC0.CLW" -- GENERATED
 #compile "COFFEE_BC.CLW" -- GENERATED
 #pragma link("C%V%tps%X%%L%.lib") -- GENERATED
