@@ -1,2 +1,0 @@
-  MODULE('MAIN_COFFEE.CLW')
-  END
